@@ -9,14 +9,18 @@ Package.onUse(function(api) {
   api.use(['meteor-platform', 'iron:router', 'semantic:ui']);
   api.addFiles([
   	'lib/router.js', 
-  	'lib/collections/board-collection.js'
+    'lib/config-api.js',
+  	'lib/collections/board-collection.js',
   ]);
 
   api.addFiles([
     'client/main.html', 
     'client/templates/layout.html',
+    'client/templates/not-found.html',
     'client/templates/layout.js'
   ], 'client');
+
+  api.export(['Boom']);
 
 });
 

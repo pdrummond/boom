@@ -1,3 +1,13 @@
+Boom.config.addBoardTemplate("default", {	
+	defaultBoard: true,
+	views: [{
+		title: "Cards",
+		type: "card-list",
+	}, {
+	}]
+});
+
+
 /*Boom.config.addCardType("taskCard", 
 	extendsCard: "defaultCard",
 	fields: [{
@@ -14,7 +24,7 @@
 	cardIsDoneWhen: {fieldName: "status", value: "done"}
 });
 
-Boom.config.addStackTemplate("software-management", {	
+Boom.config.addBoardTemplate("software-management", {	
 	title: "Software Management",
 	pages: [{
 		title:"Activity Feed",
