@@ -1,0 +1,11 @@
+<template name="boardPage">
+	<ul>
+	{{#each views}}
+		{{ > view }}	
+	{{/each}}	
+	</ul>
+</template>
+
+<template name="view">
+	<li> {{title}} </li>
+</template>

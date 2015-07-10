@@ -4,6 +4,8 @@ Boom.config.addBoardTemplate("default", {
 		title: "Cards",
 		type: "card-list",
 	}, {
+		title: "Roadmap",
+		type: "card-list",
 	}]
 });
 
