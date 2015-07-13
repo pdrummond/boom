@@ -15,3 +15,5 @@ accounts-password
 boom:kernel
 fortawesome:fontawesome
 boom:board-page
+boom:cardlist-view
+boom:kanban-view

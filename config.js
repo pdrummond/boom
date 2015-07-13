@@ -5,7 +5,7 @@ Boom.config.addBoardTemplate("default", {
 		type: "card-list",
 	}, {
 		title: "Roadmap",
-		type: "card-list",
+		type: "kanban",
 	}]
 });
 
