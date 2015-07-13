@@ -1,12 +1,14 @@
-<template name="boardPage">
+<template name="boardPage">	
+	<h1>My First Board</h1>
 	<div class="ui buttons">
 		{{#each views}}
 			{{ > viewButton }}	
 		{{/each}}	  		
 	</div>
-	<div class="view-wrapper">
+	<div class="view-wrapper" style="margin-top:10px;">
 		{{> Template.dynamic template=viewTemplate}}
 	</div>
+	
 </template>
 
 <template name="viewButton">

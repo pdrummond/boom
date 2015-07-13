@@ -8,9 +8,11 @@ Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
   api.use(['meteor-platform', 'iron:router', 'semantic:ui']);
   api.addFiles([
+    'lib/collections/card-collection.js',
     'lib/collections/board-collection.js',
     'lib/collections/board-template-collection.js',
   	'lib/router.js', 
+    'lib/api.js',
     'lib/config-api.js'
   ]);
 
@@ -21,7 +23,7 @@ Package.onUse(function(api) {
     'client/templates/layout.js'
   ], 'client');
 
-  api.export(['Boom', 'BoardTemplates']);
+  api.export(['Boom', 'Cards', 'BoardTemplates']);
 
 });
 

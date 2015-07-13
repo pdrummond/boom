@@ -1,13 +1,28 @@
-Boom.config.addBoardTemplate("default", {	
-	defaultBoard: true,
-	views: [{
-		title: "Cards",
-		type: "card-list",
-	}, {
-		title: "Roadmap",
-		type: "kanban",
-	}]
-});
+if(Meteor.isServer) {
+	Boom.config.addBoardTemplate("default", {	
+		defaultBoard: true,
+		views: [{
+			title: "Cards",
+			type: "cardListView",
+
+		}, {
+			title: "Roadmap",
+			type: "kanbanView",
+		}]
+	});
+
+	Boom.Cards.removeAllCards();
+
+	Boom.Cards.createCard('card-1', {
+		userId: "pdrummond",
+		title: "My First Card",
+		content: "This is my first card and it already *supports* **Markdown** syntax so there."
+	});
+	Boom.Cards.createCard('card-2', {
+		userId: "pdrummond",
+		title: "My Second Card"
+	});
+}
 
 
 /*Boom.config.addCardType("taskCard", 

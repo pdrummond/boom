@@ -10,6 +10,7 @@ blaze@2.1.2
 blaze-tools@1.0.3
 boilerplate-generator@1.0.3
 boom:board-page@0.0.1
+boom:carddetail-page@0.0.1
 boom:cardlist-view@0.0.1
 boom:kanban-view@0.0.1
 boom:kernel@0.0.1
@@ -43,6 +44,7 @@ less@1.0.14
 livedata@1.0.13
 localstorage@1.0.3
 logging@1.0.7
+markdown@1.0.4
 meteor@1.1.6
 meteor-platform@1.2.2
 minifiers@1.1.5

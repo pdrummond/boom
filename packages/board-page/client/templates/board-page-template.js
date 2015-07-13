@@ -4,7 +4,9 @@ Template.boardPage.helpers({
 	},
 
 	viewTemplate: function() {
-		return Session.get("currentViewTemplate");
+		var viewTemplate = Session.get("currentViewTemplate");
+		console.log("viewTemplate: " + viewTemplate);
+		return viewTemplate;
 	}
 });
 
