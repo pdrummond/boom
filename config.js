@@ -1,7 +1,7 @@
 Boom.config.addCardTemplate("TaskCard", {
 		fields: {
 			title: { type: String, label: "Title"},
-			author: { type: String, label: "Author"},
+			status: { type: Object, label: "Status", allowedValues: ['Open', 'Closed']},
 			content: {type: String, label: "Content"}
 		}
 	});
