@@ -8,6 +8,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
   api.use(['meteor-platform', 'iron:router', 'semantic:ui']);
   api.addFiles([
+    'kernel.js',
     'lib/collections/card-collection.js',
     'lib/collections/board-collection.js',
     'lib/collections/board-template-collection.js',

@@ -1,4 +1,13 @@
-if(Meteor.isServer) {
+Boom.config.addCardTemplate("TaskCard", {
+		fields: {
+			title: { type: String, label: "Title"},
+			author: { type: String, label: "Author"},
+			content: {type: String, label: "Content"}
+		}
+	});
+
+if(Meteor.isServer) {	
+
 	Boom.config.addBoardTemplate("default", {	
 		defaultBoard: true,
 		views: [{

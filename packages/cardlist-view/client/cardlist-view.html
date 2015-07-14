@@ -1,4 +1,5 @@
 <template name="cardListView">
+  {{> quickForm collection=taskCards id="insertTaskForm" type="insert"}}
 	<div class="ui items">
 		<div class="ui relaxed divided items" >
 			{{#each cards}}

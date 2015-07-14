@@ -12,7 +12,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
-   api.use(['meteor-platform', 'iron:router', 'semantic:ui']);
+   api.use(['meteor-platform', 'iron:router', 'semantic:ui', 'boom:kernel']);
   api.addFiles([
     'client/cardlist-view.html',
     'client/cardlist-view.js'

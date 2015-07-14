@@ -1,6 +1,11 @@
 Template.cardListView.helpers({
 	cards: function() {
-		return Cards.find();
+		return Cards.find({boardId: Session.get('currentBoardId')});
+	},
+
+	taskCards: function() {
+		var col =  Boom.CardTypes["TaskCard"];
+		return col;
 	}
 });
 
