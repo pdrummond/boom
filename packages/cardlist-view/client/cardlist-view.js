@@ -4,3 +4,9 @@ Template.cardListView.helpers({
 	}
 });
 
+Template.cardItem.events({
+	'click #show-more-button': function() {
+		Router.go("/board/" + Session.get('currentBoardId') + "/card/" + this._id);
+	}
+});
+
