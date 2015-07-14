@@ -21,3 +21,5 @@ Router.route('/board/:boardId/card/:cardId', function() {
 	Session.set("currentCard", card);
 	this.render("cardDetailPage");
 });
+
+Router.route("/", 'boardListPage');

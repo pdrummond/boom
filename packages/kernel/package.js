@@ -23,7 +23,7 @@ Package.onUse(function(api) {
     'client/templates/layout.js'
   ], 'client');
 
-  api.export(['Boom', 'Cards', 'BoardTemplates']);
+  api.export(['Boom', 'Boards', 'Cards', 'BoardTemplates']);
 
 });
 
