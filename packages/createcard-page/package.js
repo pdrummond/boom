@@ -1,5 +1,5 @@
 Package.describe({
-  name: 'boom:boardlist-page',
+  name: 'boom:createcard-page',
   version: '0.0.1',
   // Brief, one-line summary of the package.
   summary: '',
@@ -12,17 +12,17 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
-  api.use(['meteor-platform', 'iron:router', 'semantic:ui']);
+  api.use(['meteor-platform', 'iron:router', 'semantic:ui', 'aldeed:autoform', 'boom:kernel']);
   api.addFiles([
-    'client/boardlist-page.html',
-    'client/boardlist-page.js'
+    'client/createcard-page.html',
+    'client/createcard-page.js'
     ], ['client']);
 
-  api.export("boardListPage");
+  api.export("createCardPage");
 });
 
 Package.onTest(function(api) {
   api.use('tinytest');
-  api.use('boom:boardlist-page');
-  api.addFiles('boardlist-page-tests.js');
+  api.use('boom:createcard-page');
+  api.addFiles('createcard-page-tests.js');
 });

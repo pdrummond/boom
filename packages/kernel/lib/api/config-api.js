@@ -1,16 +1,22 @@
 Boom = Boom || {};
 
-Boom.CardTypes = {
+Boom.CardTemplates = {
 
 }
 
+Boom.CardCollections = {
 
+}
 
 Boom.config = {
 
-  addCardTemplate: function(cardType, attrs) {
-    Boom.CardTypes[cardType] = new Mongo.Collection(cardType);
-    Boom.CardTypes[cardType].attachSchema(new SimpleSchema(attrs.fields));    
+  addCardTemplate: function(cardTemplate, attrs) {
+    var collection = new Mongo.Collection(cardTemplate);
+    collection.attachSchema(new SimpleSchema(attrs.fields));
+    Boom.CardCollections[cardTemplate] = collection;
+    Boom.CardTemplates[cardTemplate] = _.extend(attrs, {
+      templateName: cardTemplate,
+    });
   },
 
   addBoardTemplate: function(id, attrs) {

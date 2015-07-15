@@ -16,6 +16,7 @@ boom:board-page@0.0.1
 boom:boardlist-page@0.0.1
 boom:carddetail-page@0.0.1
 boom:cardlist-view@0.0.1
+boom:createcard-page@0.0.1
 boom:kanban-view@0.0.1
 boom:kernel@0.0.1
 callback-hook@1.0.3
@@ -24,6 +25,7 @@ ddp@1.1.0
 deps@1.0.7
 ejson@1.0.6
 email@1.0.6
+fabienb4:autoform-semantic-ui@0.4.2
 fastclick@1.0.3
 flemay:less-autoprefixer@1.1.0
 fortawesome:fontawesome@4.3.0

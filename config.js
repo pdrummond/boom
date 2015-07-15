@@ -1,10 +1,20 @@
 Boom.config.addCardTemplate("TaskCard", {
-		fields: {
-			title: { type: String, label: "Title"},
-			status: { type: Object, label: "Status", allowedValues: ['Open', 'Closed']},
-			content: {type: String, label: "Content"}
-		}
-	});
+	label: "Task",
+	fields: {
+		title: { type: String, label: "Title"},
+		status: { type: Object, label: "Status", allowedValues: ['Open', 'Closed'], optional:true},
+		content: {type: String, label: "Content"}
+	}
+});
+
+Boom.config.addCardTemplate("ArticleCard", {
+	label: "Article",
+	fields: {
+		title: { type: String, label: "Title"},
+		author: { type: String, label: "Author"},
+		content: {type: String, label: "Content"}
+	}
+});
 
 if(Meteor.isServer) {	
 
