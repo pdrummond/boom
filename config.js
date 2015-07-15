@@ -6,7 +6,7 @@ Boom.config.addCardTemplate("TaskCard", {
 	label: "Task",
 	fields: {
 		title: { type: String, label: "Title"},
-		status: { type: Object, label: "Status", allowedValues: ['Open', 'Closed'], optional:true},
+		status: { type: String, label: "Status", allowedValues: ['Open', 'In-Progress', 'Blocked', 'In-Test', 'Resolved', 'Closed']},
 		content: {type: String, label: "Content", max: 2000, autoform: { rows: 10 }}
 	}
 });
