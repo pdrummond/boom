@@ -12,11 +12,15 @@ Router.route('/board/:boardId/:viewTemplate', function() {
   this.render("boardPage");
 });
 
-Router.route('/board/:boardId/card/:cardId', function() {
-  	var board = Boards.findOne(this.params.boardId);  
-  	var card = Cards.findOne(this.params.cardId);
+Router.route('/board/:boardId/:cardTemplate/:cardId', function() {
+    var board = Boards.findOne(this.params.boardId);
   	Session.set("currentBoardId", this.params.boardId);
     Session.set("currentBoard", board);
+
+    var cardTemplate = this.params.cardTemplate;
+    Session.set("currentCardTemplate", cardTemplate);
+  	var card = Boom.CardCollections[cardTemplate].findOne(this.params.cardId);
+  	
     Session.set("currentCardId", this.params.cardId);
     Session.set("currentCard", card);
     this.render("cardDetailPage");

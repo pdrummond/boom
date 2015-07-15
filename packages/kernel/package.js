@@ -8,8 +8,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
   api.use(['meteor-platform', 'iron:router', 'semantic:ui', 'fabienb4:autoform-semantic-ui']);
   api.addFiles([
-    'kernel.js',
-    'lib/collections/card-collection.js',
+    'kernel.js',    
     'lib/collections/board-collection.js',
     'lib/collections/board-template-collection.js',
   	'lib/router.js', 
@@ -18,15 +17,16 @@ Package.onUse(function(api) {
     'lib/api/router-api.js'
   ]);
 
-  api.addFiles([
+  api.addFiles([    
     'client/main.html', 
-    'client/helpers/card-template-helpers.js',
+    'client/helpers/datetime-helpers.js',
+    'client/helpers/card-helpers.js',
     'client/templates/layout.html',
     'client/templates/not-found.html',
     'client/templates/layout.js'
   ], 'client');
 
-  api.export(['Boom', 'Boards', 'Cards', 'BoardTemplates']);
+  api.export(['Boom', 'Boards', 'Cards', 'BoardTemplates', 'formatTime']);
 
 });
 

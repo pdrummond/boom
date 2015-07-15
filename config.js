@@ -1,9 +1,13 @@
+Boom.CardListView = {
+	cardTemplate: "TaskCard"
+};
+
 Boom.config.addCardTemplate("TaskCard", {
 	label: "Task",
 	fields: {
 		title: { type: String, label: "Title"},
 		status: { type: Object, label: "Status", allowedValues: ['Open', 'Closed'], optional:true},
-		content: {type: String, label: "Content"}
+		content: {type: String, label: "Content", max: 2000, autoform: { rows: 10 }}
 	}
 });
 
@@ -28,19 +32,7 @@ if(Meteor.isServer) {
 			title: "Roadmap",
 			type: "kanbanView",
 		}]
-	});
-
-	Boom.Cards.removeAllCards();
-
-	Boom.Cards.createCard('card-1', {
-		userId: "pdrummond",
-		title: "My First Card",
-		content: "This is my first card and it already *supports* **Markdown** syntax so there."
-	});
-	Boom.Cards.createCard('card-2', {
-		userId: "pdrummond",
-		title: "My Second Card"
-	});
+	});	
 }
 
 
