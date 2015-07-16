@@ -13,9 +13,3 @@ Template.cardItem.events({
 Template.cardListView.onRendered(function() {
 	this.$('.ui.dropdown').dropdown();
 });
-
-Template.createCardButtonItem.events({
-	'click': function() {
-		Router.go("/cards/create/" + this.templateName);
-	}
-})

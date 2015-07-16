@@ -1,5 +1,4 @@
-<template name="cardListView">
-  {{> createCardButton}}
+<template name="cardListView">  
   
 	<div class="ui items">
 		<div class="ui relaxed divided items" >
@@ -54,19 +53,4 @@
           </div>
       </div>
       </div>
-</template>
-
-<template name="createCardButton">
-  <div class="ui icon top left pointing dropdown button">
-    <i class="plus icon"></i> Create
-    <div class="menu">
-      {{#each cardTemplates}}
-        {{> createCardButtonItem}}
-      {{/each}}
-    </div>
-  </div>
-</template>
-
-<template name="createCardButtonItem">
-  <div class="item">{{label}}</div>
 </template>

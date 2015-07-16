@@ -1,16 +1,45 @@
 <template name="boardPage">	
-	<h1>My First Board</h1>
-	<div class="ui buttons">
-		{{#each views}}
-			{{ > viewButton }}	
-		{{/each}}	  		
+	<div class="ui vertically divided grid">
+		<div class="two column row">
+			<div class="column">
+				<h1>My First Board</h1>
+			</div>
+			<div class="column right aligned">
+				<div class="ui basic buttons">
+					{{#each views}}
+					{{ > viewButton }}	
+					{{/each}}					
+				</div>		
+				<span style="margin-left:10px">
+					{{> createCardButton}}
+				</span>
+			</div>
+		</div>
+		<div class="one column row">
+			<div class="column">
+				<div class="view-wrapper" style="margin-top:10px;">
+					{{> Template.dynamic template=viewTemplate}}
+				</div>
+			</div>
+		</div>
 	</div>
-	<div class="view-wrapper" style="margin-top:10px;">
-		{{> Template.dynamic template=viewTemplate}}
-	</div>
-	
 </template>
 
 <template name="viewButton">
 	<button class="ui button">{{title}}</button>
+</template>
+
+<template name="createCardButton">
+  <div class="ui top left pointing dropdown primary labeled icon button">
+    <i class="plus icon"></i> Create
+    <div class="menu">
+      {{#each cardTemplates}}
+        {{> createCardButtonItem}}
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="createCardButtonItem">
+  <div class="item">{{label}}</div>
 </template>
