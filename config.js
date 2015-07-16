@@ -1,6 +1,37 @@
-Boom.CardListView = {
-	cardTemplate: "TaskCard"
-};
+Boom.config.addBoardTemplate("SoftwareBoard", {	
+	label: "Software Management",
+	fields: {
+		title: { type: String, label: "Title"},
+		description: {type: String, label: "Description", max: 2000, autoform: { rows: 10 }},
+		templateName: {type: String, label: "Template Name", optional: true}
+	},
+	views: [{
+		title: "Cards",
+		type: "cardListView",
+		cardTtype: "TaskCard",
+	}, {
+		title: "Roadmap",
+		type: "kanbanView",
+		cardType: "TaskCard",
+	}, {
+		title: "Articles",
+		type: "cardListView",
+		cardType: "ArticleCard"
+	}]
+});	
+
+Boom.config.addBoardTemplate("SimpleBoard", {	
+	label: "Kanban Board",
+	fields: {
+		title: { type: String, label: "Title"},
+		description: {type: String, label: "Description", max: 2000, autoform: { rows: 10 }}
+	},
+	views: [{
+		title: "Board",
+		type: "kanbanView",
+		cardType: "TaskCard",
+	}]
+});	
 
 Boom.config.addCardTemplate("TaskCard", {
 	label: "Task",
@@ -20,21 +51,9 @@ Boom.config.addCardTemplate("ArticleCard", {
 	}
 });
 
-if(Meteor.isServer) {	
-
-	Boom.config.addBoardTemplate("default", {	
-		defaultBoard: true,
-		views: [{
-			title: "Cards",
-			type: "cardListView",
-
-		}, {
-			title: "Roadmap",
-			type: "kanbanView",
-		}]
-	});	
-}
-
+Boom.CardListView = { //FIXME: This doesn't make sense here - it needs to come from the view config for the board.
+	cardTemplate: "TaskCard"
+};
 
 /*Boom.config.addCardType("taskCard", 
 	extendsCard: "defaultCard",

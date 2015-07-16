@@ -6,7 +6,7 @@ Template.createCardPage.helpers({
 });
 
 AutoForm.hooks({
-  insertCardForm: {
+  createCardForm: {
   	onSuccess: function() {
   		Boom.Router.showCurrentBoardPage();
   	}

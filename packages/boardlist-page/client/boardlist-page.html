@@ -1,21 +1,45 @@
 <template name="boardListPage">
-
-<button id="create-board-button" class="positive ui button">Create Board</button>
-
-<div class="ui relaxed selection divided list">
-	{{#each boards}}
-		{{> boardListItem }}
-	{{/each}}
-</div>
-
+	<div class="ui vertically divided grid">
+		<div class="two column row">
+			<div class="column">
+				<h1>All Boards</h1>
+			</div>
+			<div class="column right aligned">
+				{{> createBoardButton}}
+			</div>
+		</div>
+		<div class="one column row">
+			<div class="ui relaxed selection divided list">
+				{{#each allBoards}}
+					{{> boardListItem }}
+				{{/each}}
+			</div>
+		</div>
+	</div>
 </template>
 
 <template name="boardListItem">
 	<div class="item">
-	    <i class="large laptop middle aligned icon"></i>
-	    <div class="content">
+	    <i class="huge middle aligned block layout icon"></i>
+	    <div class="content" style="padding:10px">
 	      <a class="header">{{title}}</a>
 	      <div class="description">Created 9th May 2015 by Paul Drummond</div>
 	    </div>
 	</div>
 </template>
+
+<template name="createBoardButton">
+  <div class="ui top left pointing dropdown primary labeled icon button">
+    <i class="plus icon"></i> Create Board
+    <div class="menu">
+      {{#each boardTemplates}}
+        {{> createBoardButtonItem}}
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="createBoardButtonItem">
+  <div class="item">{{label}}</div>
+</template>
+

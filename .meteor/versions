@@ -16,6 +16,7 @@ boom:board-page@0.0.1
 boom:boardlist-page@0.0.1
 boom:carddetail-page@0.0.1
 boom:cardlist-view@0.0.1
+boom:createboard-page@0.0.1
 boom:createcard-page@0.0.1
 boom:kanban-view@0.0.1
 boom:kernel@0.0.1

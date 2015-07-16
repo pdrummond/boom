@@ -1,7 +1,4 @@
 Template.boardListPage.helpers({
-	boards: function() {
-		return Boards.find();
-	}
 });
 
 Template.boardListPage.events({
@@ -19,7 +16,18 @@ Template.boardListPage.events({
 });
 
 Template.boardListItem.events({
-	'click': function() {
-		Router.go("/board/" + this._id + "/cards");
+	'click': function() {		
+		Boom.Router.showBoardPage({boardTemplate: this.templateName, boardId: this._id})
 	}
+});
+
+Template.createBoardButtonItem.events({
+	'click': function() {
+		Boom.Router.showCreateBoardPage({boardTemplate: this.templateName});		
+	}
+});
+
+
+Template.boardListPage.onRendered(function() {
+	this.$('.ui.dropdown').dropdown();
 });

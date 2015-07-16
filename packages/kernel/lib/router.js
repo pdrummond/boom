@@ -4,8 +4,15 @@ Router.configure({
   notFoundTemplate: 'notFound',
 });
 
-Router.route('/board/:boardId/:viewTemplate', function() {
-  var board = Boards.findOne(this.params.boardId);  
+Router.route('/board/create/:boardTemplate', function() {
+    Session.set("currentBoardTemplate", this.params.boardTemplate);
+    this.render("createBoardPage");
+});
+
+Router.route('/:boardTemplate/:boardId/:viewTemplate', function() {
+  var boardTemplate = this.params.boardTemplate;
+  Session.set("currentBoardTemplate", boardTemplate);
+  var board = Boom.BoardCollections[boardTemplate].findOne(this.params.boardId);
   Session.set("currentBoardId", this.params.boardId);
   Session.set("currentBoard", board);
   Session.set("currentViewTemplate", this.params.viewTemplate);
@@ -30,5 +37,7 @@ Router.route('/cards/create/:cardTemplate', function() {
     Session.set("currentCardTemplate", this.params.cardTemplate);
     this.render("createCardPage");
 });
+
+
 
 Router.route("/", 'boardListPage');
