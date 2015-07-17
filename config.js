@@ -39,9 +39,37 @@ Boom.config.addCardTemplate("TaskCard", {
 	label: "Task",
 	fields: {
 		title: { type: String, label: "Title"},
-		status: { type: String, label: "Status", allowedValues: ['Open', 'In-Progress', 'Blocked', 'In-Test', 'Resolved', 'Closed']},
+		status: { 
+			type: String, 
+			label: "Status", 
+			allowedValues: ['open', 'in-progress', 'blocked', 'in-test', 'resolved', 'closed'],
+			autoform: {
+				options: [
+					{label: 'Open', value: 'open'},
+					{label: 'In Progress', value: 'in-progress'},
+					{label: 'Blocked', value: 'blocked'},
+					{label: 'In Test', value: 'in-test'},
+					{label: 'Resolved', value: 'resolved'},
+					{label: 'Closed', value: 'closed'},
+				]
+			},
+		},
 		content: {type: String, label: "Content", max: 2000, autoform: { rows: 10 }}
-	}
+	},
+	miniFieldGrid: {
+		topField: {field: 'status', color: function(ctx) {
+			switch(ctx.card.status) {
+				case 'open': return 'olive';
+				case 'in-progress': return 'teal';
+				case 'blocked': return 'red';
+				case 'in-test': return 'green';
+				case 'resolved': return 'blue';
+				case 'closed': return 'black';
+				default: return 'black';
+			}			
+		}},
+		bottomFields: [{label:'Votes', field: 'votes'}, {label:'Views', field: 'views'}]
+	}	
 });
 
 Boom.config.addCardTemplate("ArticleCard", {

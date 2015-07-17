@@ -1,12 +1,12 @@
 Template.cardListView.helpers({
 	cards: function() {
-		return Boom.CardCollections.TaskCard.find();
+		return Boom.CardCollections.TaskCard.find({boardId: Session.get('currentBoardId')});
 	}
 });
 
 Template.cardItem.events({
-	'click #show-more-button': function() {
-		Router.go("/board/" + Session.get('currentBoardId') + "/" + Boom.CardListView.cardTemplate + "/" + this._id);
+	'click #show-more-button': function() {		
+		Boom.Router.showCardDetailPage(this);
 	}
 });
 

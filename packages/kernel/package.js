@@ -14,11 +14,13 @@ Package.onUse(function(api) {
     'lib/api/boards-api.js',
     'lib/api/config-api.js',
     'lib/api/router-api.js',
-    'lib/methods/board-methods.js'
+    'lib/methods/board-methods.js',
+    'lib/methods/card-methods.js'
     ]);
 
   api.addFiles([    
     'client/main.html', 
+    'client/stylesheets/default.css',
     'client/helpers/datetime-helpers.js',
     'client/helpers/card-helpers.js',
     'client/helpers/board-helpers.js',

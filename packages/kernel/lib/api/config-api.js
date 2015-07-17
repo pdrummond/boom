@@ -8,6 +8,12 @@ Boom.BoardCollections = {}
 Boom.config = {
 
   addCardTemplate: function(templateName, attrs) {
+    attrs.fields = _.extend(attrs.fields, {
+      templateName: {type: String, optional:true, autoform: {omit:true}},
+      createdAt: {type: Number, optional:true, autoform: {omit:true}},
+      boardId: {type: String, optional:true, autoform: {omit:true}}
+    });
+    
     var collection = new Mongo.Collection(templateName);
     collection.attachSchema(new SimpleSchema(attrs.fields));
     Boom.CardCollections[templateName] = collection;
@@ -18,8 +24,8 @@ Boom.config = {
 
   addBoardTemplate: function(templateName, attrs) {
     attrs.fields = _.extend(attrs.fields, {
-      templateName: {type: String, optional: true},
-      createdAt: {type: Number, optional: true}
+      templateName: {type: String, optional: true, autoform: {omit:true}},
+      createdAt: {type: Number, optional: true, autoform: {omit:true}}
     });
 
   	var collection = new Mongo.Collection(templateName);

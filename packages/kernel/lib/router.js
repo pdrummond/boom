@@ -9,7 +9,7 @@ Router.route('/board/create/:boardTemplate', function() {
     this.render("createBoardPage");
 });
 
-Router.route('/:boardTemplate/:boardId/:boardViewId', function() {
+Router.route('/board/:boardTemplate/:boardId/:boardViewId', function() {
   var boardTemplate = this.params.boardTemplate;
   Session.set("currentBoardTemplate", boardTemplate);
   var board = Boom.BoardCollections[boardTemplate].findOne(this.params.boardId);
@@ -19,9 +19,10 @@ Router.route('/:boardTemplate/:boardId/:boardViewId', function() {
   this.render("boardPage");
 });
 
-Router.route('/board/:boardId/:cardTemplate/:cardId', function() {
-    var board = Boards.findOne(this.params.boardId);
-  	Session.set("currentBoardId", this.params.boardId);
+Router.route('/board/:boardTemplate/:boardId/card/:cardTemplate/:cardId/detail/', function() {    
+    var boardTemplate = this.params.boardTemplate;
+    var board = Boom.BoardCollections[boardTemplate].findOne(this.params.boardId);
+    Session.set("currentBoardId", this.params.boardId);
     Session.set("currentBoard", board);
 
     var cardTemplate = this.params.cardTemplate;
@@ -30,6 +31,8 @@ Router.route('/board/:boardId/:cardTemplate/:cardId', function() {
   	
     Session.set("currentCardId", this.params.cardId);
     Session.set("currentCard", card);
+
+
     this.render("cardDetailPage");
 });
 

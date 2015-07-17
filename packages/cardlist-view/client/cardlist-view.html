@@ -1,56 +1,32 @@
 <template name="cardListView">  
   <h2>Card List View</h2>
-	<div class="ui items">
-		<div class="ui relaxed divided items" >
-			{{#each cards}}
-			 {{> cardItem}}			
-			{{/each}}
-		</div>
-	</div>
+  <div class="ui items">
+    <div class="ui relaxed divided items" >
+     {{#each cards}}
+     {{> cardItem}}			
+     {{/each}}
+   </div>
+ </div>
 </template>
 
 <template name="cardItem">
-<div class="item">  
-        <div class="ui image">
-          <div class="ui equal width center aligned padded grid">
-  <div class="row" >
-    <div class="black column"><strong>{{status}}</strong></div>
-  </div>
-  <div class="row">
-    <div class="olive column">
-      <div class="ui mini statistic">
-      <div class="value">10</div>
-  <div class="label">
-    Votes
-  </div>
-</div>
-   </div>
-    <!--<div class="purple column">
-      <div class="ui mini statistic">
-      <div class="value">
-    20
-  </div>
-  <div class="label">
-    Comments
-  </div>
-</div>
-    </div>-->
-  </div>
-</div>
-        </div>    
-        <div class="content" style="margin-top:5px">
-          <a class="header">{{title}}</a> 
-          <div class="meta">        
+  <div class="item">  
+    <div class="ui image">
+      {{> fieldGridWidget card=this gridType="miniFieldGrid"}}      
+    </div>    
+    <div class="content" style="margin-top:5px">
+      <a class="header">{{title}}</a> 
+      <div class="meta">        
       </div>          
-            <div class="description">
-              {{#markdown}} {{content}} {{/markdown}}
-            </div>
-            <div class="extra">
-            <div id="show-more-button" class="ui left floated basic tiny button">
-              Show More
-              <i class="right chevron icon"></i>
-            </div>
-          </div>
+      <div class="description">
+        {{#markdown}} {{content}} {{/markdown}}
       </div>
+      <div class="extra">
+        <div id="show-more-button" class="ui left floated basic tiny button">
+          Show More
+          <i class="right chevron icon"></i>
+        </div>
       </div>
+    </div>
+  </div>
 </template>

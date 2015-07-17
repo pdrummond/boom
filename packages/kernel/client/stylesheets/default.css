@@ -1,0 +1,9 @@
+.boom-field-grid {
+	border: 1px solid black;
+	xpadding:2px !important;
+}
+
+.boom-field-grid .row {
+	background: #F1F1F1;
+	xpadding:2px !important;
+}

@@ -1,0 +1,21 @@
+<template name="fieldGridWidget">
+  <div class="boom-field-grid ui equal width center aligned padded stackable grid">
+    <div class="row" >
+      <div class="{{topFieldColor}} column"><strong>{{topFieldContent}}</strong></div>
+    </div>
+    <div class="row">
+      {{#each bottomFieldValues}}
+        {{> bottomField}}
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="bottomField">
+  <div class="column {{color}}">
+    <div class="ui mini statistic">
+      <div class="value">{{value}}</div>
+      <div class="label">{{label}}</div>
+    </div>
+  </div>         
+</template>

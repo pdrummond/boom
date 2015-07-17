@@ -2,7 +2,7 @@ Boom = Boom || {};
 
 Boom.Router = {
 	showCurrentBoardPage: function() {
-		Router.go("/board/" + Session.get('currentBoardId') + "/cards");
+		Router.go("/board/" + Session.get('currentBoardTemplate') + "/" + Session.get('currentBoardId') + "/cards");
 	},
 
 	showBoardListPage: function() {
@@ -14,10 +14,14 @@ Boom.Router = {
 	},
 
 	showBoardPage: function(opts) {
-		Router.go("/" + opts.boardTemplate + "/" + opts.boardId + "/cards");
+		Router.go("/board/" + opts.boardTemplate + "/" + opts.boardId + "/cards");
 	},
 
 	changeBoardViewTo: function(viewId) {
-		Router.go("/" + Session.get('currentBoardTemplate') + "/" + Session.get('currentBoardId') + "/" + viewId);
+		Router.go("/board/" + Session.get('currentBoardTemplate') + "/" + Session.get('currentBoardId') + "/" + viewId);
+	},
+
+	showCardDetailPage: function(card) {
+		Router.go("/board/" + Session.get('currentBoardTemplate') + "/" + Session.get('currentBoardId') + "/card/" + card.templateName + "/" + card._id + "/detail");
 	}
 }
