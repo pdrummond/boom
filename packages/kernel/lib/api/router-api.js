@@ -23,5 +23,13 @@ Boom.Router = {
 
 	showCardDetailPage: function(card) {
 		Router.go("/board/" + Session.get('currentBoardTemplate') + "/" + Session.get('currentBoardId') + "/card/" + card.templateName + "/" + card._id + "/detail");
+	},
+
+	showCreateCardPage: function(opts) {
+		Router.go("/cards/" + opts.templateName + "/create");
+	},
+
+	showEditCardPage: function(card) {
+		Router.go("/cards/" + card.templateName + "/edit/" + card._id);
 	}
 }

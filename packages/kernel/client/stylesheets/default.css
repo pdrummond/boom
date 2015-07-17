@@ -1,3 +1,8 @@
+body {
+	font-size: 16px !important;
+	font-family: 'Open Sans', sans-serif !important;
+}
+
 .boom-field-grid {
 	border: 1px solid black;
 	xpadding:2px !important;

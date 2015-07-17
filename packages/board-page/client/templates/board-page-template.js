@@ -29,8 +29,8 @@ Template.viewButton.events({
 });
 
 Template.createCardButtonItem.events({
-	'click': function() {
-		Router.go("/cards/create/" + this.templateName);
+	'click': function() {		
+		Boom.Router.showCreateCardPage({cardTemplate: this.templateName});
 	}
 });
 

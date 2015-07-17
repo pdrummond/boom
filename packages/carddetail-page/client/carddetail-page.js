@@ -1,6 +1,7 @@
-Template.cardDetailPage.helpers({
-	currentCard: function() {
-		return Session.get("currentCard");
+
+Template.cardDetailPage.events({
+	'click #edit-card-button': function() {
+		Boom.Router.showEditCardPage(this);
 	}
 });
 

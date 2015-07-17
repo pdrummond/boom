@@ -36,9 +36,19 @@ Router.route('/board/:boardTemplate/:boardId/card/:cardTemplate/:cardId/detail/'
     this.render("cardDetailPage");
 });
 
-Router.route('/cards/create/:cardTemplate', function() {
+Router.route('/cards/:cardTemplate/create', function() {
     Session.set("currentCardTemplate", this.params.cardTemplate);
     this.render("createCardPage");
+});
+
+Router.route('/cards/:cardTemplate/edit/:cardId', function() {
+    Session.set("currentCardTemplate", this.params.cardTemplate);
+     var cardTemplate = this.params.cardTemplate;
+    Session.set("currentCardTemplate", cardTemplate);
+    var card = Boom.CardCollections[cardTemplate].findOne(this.params.cardId);
+    Session.set("currentCardId", this.params.cardId);
+    Session.set("currentCard", card);
+    this.render("editCardPage");
 });
 
 

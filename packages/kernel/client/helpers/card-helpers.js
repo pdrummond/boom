@@ -3,3 +3,7 @@ UI.registerHelper('cardTemplates', function(context, options) {
 		return t;
 	});
 });
+
+UI.registerHelper('currentCard', function(context, options) {	
+	return Session.get('currentCard');
+});
