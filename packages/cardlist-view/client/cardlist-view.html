@@ -1,12 +1,35 @@
-<template name="cardListView">  
-  <h2>Card List View</h2>
+<template name="cardListView">
+  <div class="ui vertically divided grid">
+    <div class="row">
+      <div class="column">
+        <span>
+          Show me 
+          <div class="ui inline dropdown">
+            <div class="text">{{selectedStatus}}</div>
+            <i class="dropdown icon"></i>
+            <div class="menu">
+              <div id="clear-status-filter" class="item">All</div>
+              {{#each statusFields}}
+              {{> statusItem}}
+              {{/each}}
+            </div>
+          </div> cards 
+        </span>
+      </div>      
+    </div>
+  </div>
+
   <div class="ui items">
     <div class="ui relaxed divided items" >
      {{#each cards}}
-     {{> cardItem}}			
+      {{> cardItem}}			
      {{/each}}
    </div>
  </div>
+</template>
+
+<template name="statusItem">
+  <div class="item">{{label}}</div>
 </template>
 
 <template name="cardItem">
