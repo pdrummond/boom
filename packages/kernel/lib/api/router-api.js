@@ -15,5 +15,9 @@ Boom.Router = {
 
 	showBoardPage: function(opts) {
 		Router.go("/" + opts.boardTemplate + "/" + opts.boardId + "/cards");
+	},
+
+	changeBoardViewTo: function(viewId) {
+		Router.go("/" + Session.get('currentBoardTemplate') + "/" + Session.get('currentBoardId') + "/" + viewId);
 	}
 }

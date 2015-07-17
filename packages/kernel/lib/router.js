@@ -9,13 +9,13 @@ Router.route('/board/create/:boardTemplate', function() {
     this.render("createBoardPage");
 });
 
-Router.route('/:boardTemplate/:boardId/:viewTemplate', function() {
+Router.route('/:boardTemplate/:boardId/:boardViewId', function() {
   var boardTemplate = this.params.boardTemplate;
   Session.set("currentBoardTemplate", boardTemplate);
   var board = Boom.BoardCollections[boardTemplate].findOne(this.params.boardId);
   Session.set("currentBoardId", this.params.boardId);
   Session.set("currentBoard", board);
-  Session.set("currentViewTemplate", this.params.viewTemplate);
+  Session.set("currentBoardViewId", this.params.boardViewId);
   this.render("boardPage");
 });
 

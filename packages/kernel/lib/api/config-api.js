@@ -17,6 +17,11 @@ Boom.config = {
   },
 
   addBoardTemplate: function(templateName, attrs) {
+    attrs.fields = _.extend(attrs.fields, {
+      templateName: {type: String, optional: true},
+      createdAt: {type: Number, optional: true}
+    });
+
   	var collection = new Mongo.Collection(templateName);
     collection.attachSchema(new SimpleSchema(attrs.fields));
     Boom.BoardCollections[templateName] = collection;

@@ -1,18 +1,30 @@
 Template.boardPage.helpers({
-	views: function() {
+
+	boardTitle: function() {
+		return Session.get('currentBoard').title;
+	},
+
+	boardViews: function() {
 		return Boom.BoardTemplates[Session.get("currentBoardTemplate")].views;
 	},
 
-	viewTemplate: function() {
-		var viewTemplate = Session.get("currentViewTemplate");
-		console.log("viewTemplate: " + viewTemplate);
-		return viewTemplate;
+	boardViewTemplate: function() {
+		var views = Boom.BoardTemplates[Session.get("currentBoardTemplate")].views;
+		var currentView = _.find(views, function(view) { return view._id == Session.get("currentBoardViewId")});
+		console.log("currentViewTemplate:" + currentView.type);
+		return currentView.type;
+	}
+});
+
+Template.viewButton.helpers({
+	activeClass: function() {
+		return this._id == Session.get('currentBoardViewId') ? "active" : "";
 	}
 });
 
 Template.viewButton.events({
 	'click': function() {
-		Session.set("currentViewTemplate", this.type);
+		Boom.Router.changeBoardViewTo(this._id);
 	}
 });
 

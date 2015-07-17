@@ -2,18 +2,20 @@ Boom.config.addBoardTemplate("SoftwareBoard", {
 	label: "Software Management",
 	fields: {
 		title: { type: String, label: "Title"},
-		description: {type: String, label: "Description", max: 2000, autoform: { rows: 10 }},
-		templateName: {type: String, label: "Template Name", optional: true}
+		description: {type: String, label: "Description", max: 2000, autoform: { rows: 10 }},		
 	},
 	views: [{
+		_id: "cards",
 		title: "Cards",
 		type: "cardListView",
-		cardTtype: "TaskCard",
+		cardType: "TaskCard",
 	}, {
+		_id: "roadmap",
 		title: "Roadmap",
 		type: "kanbanView",
 		cardType: "TaskCard",
 	}, {
+		_id: "articles",
 		title: "Articles",
 		type: "cardListView",
 		cardType: "ArticleCard"

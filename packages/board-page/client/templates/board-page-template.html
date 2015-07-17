@@ -2,11 +2,11 @@
 	<div class="ui vertically divided grid">
 		<div class="two column row">
 			<div class="column">
-				<h1>My First Board</h1>
+				<h1>{{boardTitle}}</h1>
 			</div>
 			<div class="column right aligned">
 				<div class="ui basic buttons">
-					{{#each views}}
+					{{#each boardViews}}
 					{{ > viewButton }}	
 					{{/each}}					
 				</div>		
@@ -18,7 +18,7 @@
 		<div class="one column row">
 			<div class="column">
 				<div class="view-wrapper" style="margin-top:10px;">
-					{{> Template.dynamic template=viewTemplate}}
+					{{> Template.dynamic template=boardViewTemplate}}
 				</div>
 			</div>
 		</div>
@@ -26,7 +26,7 @@
 </template>
 
 <template name="viewButton">
-	<button class="ui button">{{title}}</button>
+	<button class="ui {{activeClass}} button">{{title}}</button>
 </template>
 
 <template name="createCardButton">
