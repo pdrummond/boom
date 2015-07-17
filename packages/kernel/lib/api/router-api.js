@@ -26,7 +26,7 @@ Boom.Router = {
 	},
 
 	showCreateCardPage: function(opts) {
-		Router.go("/cards/" + opts.templateName + "/create");
+		Router.go("/cards/" + opts.cardTemplate + "/create");
 	},
 
 	showEditCardPage: function(card) {
