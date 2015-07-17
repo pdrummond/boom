@@ -2,13 +2,30 @@ Template.cardListView.helpers({
 	cards: function() {
 		var criteria = {
 			boardId: Session.get('currentBoardId'),
+			archived: false			
 		}
 		var statusFilter = Session.get('cardListView.statusFilter');
 		if(statusFilter) {
 			criteria.status = statusFilter.value;
 		}
+		var archivedFilter = Session.get('cardListView.archivedFilter');
+		if(archivedFilter) {
+			criteria.archived = archivedFilter.value;
+		}
 		return Boom.CardCollections.TaskCard.find(criteria);
 	},	
+
+	numCards: function() {
+		//TODO: Don't duplicate criteria like this - come on!
+		var criteria = {
+			boardId: Session.get('currentBoardId'),
+		}
+		var statusFilter = Session.get('cardListView.statusFilter');
+		if(statusFilter) {
+			criteria.status = statusFilter.value;
+		}		
+		return Boom.CardCollections.TaskCard.find(criteria).fetch().length;
+	},
 
 	selectedStatus: function() {
 		var label = "All";

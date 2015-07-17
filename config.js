@@ -39,6 +39,18 @@ Boom.config.addCardTemplate("TaskCard", {
 	label: "Task",
 	fields: {
 		title: { type: String, label: "Title"},
+		type: { 
+			type: String, 
+			label: "Type", 
+			allowedValues: ['task', 'bug', 'feature'],
+			autoform: {
+				options: [
+					{label: 'Task', value: 'task'},
+					{label: 'Bug', value: 'bug'},
+					{label: 'Feature', value: 'feature'}
+				]
+			},
+		},
 		status: { 
 			type: String, 
 			label: "Status", 
@@ -54,7 +66,21 @@ Boom.config.addCardTemplate("TaskCard", {
 				]
 			},
 		},
-		content: {type: String, label: "Content", max: 2000, autoform: { rows: 10 }}
+		milestone: { 
+			type: String, 
+			label: "Milestone", 
+			allowedValues: ['backlog', 'milestone1', 'milestone2', 'milestone3', 'milestone4'],
+			autoform: {
+				options: [
+					{label: 'Backlog', value: 'backlog'},
+					{label: 'Milestone1', value: 'milestone2'},
+					{label: 'Milestone2', value: 'milestone3'},
+					{label: 'Milestone3', value: 'milestone4'},
+				]
+			},
+		},
+		archived: {type: Boolean, label: "Archived"},
+		content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }}
 	},
 	miniFieldGrid: {
 		topField: {field: 'status', color: function(ctx) {
@@ -68,7 +94,14 @@ Boom.config.addCardTemplate("TaskCard", {
 				default: return 'black';
 			}			
 		}},
-		bottomFields: [{label:'Votes', field: 'votes'}, {label:'Views', field: 'views'}]
+		bottomFields: [{label: "type", field: 'type', icon: function(ctx) {
+			switch(ctx.value) {
+				case 'task': return 'fa-tasks';
+				case 'bug': return 'fa-bug';
+				case 'feature': return 'fa-bolt';
+				default: return 'fa-square';
+			}
+		}}, {label: 'Milestone', field: 'milestone'}]
 	}	
 });
 

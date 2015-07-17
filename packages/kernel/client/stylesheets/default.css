@@ -12,3 +12,8 @@ body {
 	background: #F1F1F1;
 	xpadding:2px !important;
 }
+
+.statistic .label {
+	font-size: 11px !important;
+	color:gray !important;
+}

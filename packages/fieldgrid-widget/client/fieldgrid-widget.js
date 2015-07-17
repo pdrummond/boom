@@ -21,8 +21,14 @@ Template.fieldGridWidget.helpers({
 		var self = this;
 		return _.map(Boom.CardTemplates[this.card.templateName][this.gridType].bottomFields, function(fieldMetaData) {
 			return _.extend(fieldMetaData, {
-				value: 20//self.card[fieldMetaData.field]
+				value: self.card[fieldMetaData.field]
 			});
 		});
+	}
+});
+
+Template.bottomField.helpers({
+	icon: function() {
+		return _.isFunction(this.icon) ? this.icon(this) : this.icon;
 	}
 });
