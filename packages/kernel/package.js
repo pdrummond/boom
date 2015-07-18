@@ -6,7 +6,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
-  api.use(['meteor-platform', 'iron:router', 'semantic:ui', 'fabienb4:autoform-semantic-ui']);
+  api.use(['meteor-platform', 'iron:router', 'semantic:ui', 'fabienb4:autoform-semantic-ui', 'stevezhu:lodash']);
   api.addFiles([
     'kernel.js',    
     'lib/router.js', 
@@ -29,7 +29,7 @@ Package.onUse(function(api) {
     'client/templates/layout.js'
     ], 'client');
 
-  api.export(['Boom', 'Boards', 'Cards', 'BoardTemplates', 'formatTime']);
+  api.export(['lodash', 'Boom', 'Boards', 'Cards', 'BoardTemplates', 'formatTime']);
 
 });
 

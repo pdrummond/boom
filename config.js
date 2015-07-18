@@ -41,43 +41,35 @@ Boom.config.addCardTemplate("TaskCard", {
 		title: { type: String, label: "Title"},
 		type: { 
 			type: String, 
-			label: "Type", 
-			allowedValues: ['task', 'bug', 'feature'],
-			autoform: {
-				options: [
-					{label: 'Task', value: 'task'},
-					{label: 'Bug', value: 'bug'},
-					{label: 'Feature', value: 'feature'}
-				]
-			},
+			label: "Type",
+			defaultValue: 'task',
+			values: [
+				{label: 'Task',    value: 'task',	 icon: 'fa-tasks'},
+				{label: 'Bug',     value: 'bug', 	 icon: 'fa-bug'},
+				{label: 'Feature', value: 'feature', icon: 'fa-bolt'}
+			]			
 		},
 		status: { 
 			type: String, 
 			label: "Status", 
-			allowedValues: ['open', 'in-progress', 'blocked', 'in-test', 'resolved', 'closed'],
-			autoform: {
-				options: [
-					{label: 'Open', value: 'open'},
-					{label: 'In Progress', value: 'in-progress'},
-					{label: 'Blocked', value: 'blocked'},
-					{label: 'In Test', value: 'in-test'},
-					{label: 'Resolved', value: 'resolved'},
-					{label: 'Closed', value: 'closed'},
-				]
-			},
+			values: [
+				{label: 'Open', value: 'open'},
+				{label: 'In Progress', value: 'in-progress'},
+				{label: 'Blocked', value: 'blocked'},
+				{label: 'In Test', value: 'in-test'},
+				{label: 'Resolved', value: 'resolved'},
+				{label: 'Closed', value: 'closed'},
+			]		
 		},
 		milestone: { 
 			type: String, 
 			label: "Milestone", 
-			allowedValues: ['backlog', 'milestone1', 'milestone2', 'milestone3', 'milestone4'],
-			autoform: {
-				options: [
-					{label: 'Backlog', value: 'backlog'},
-					{label: 'Milestone1', value: 'milestone2'},
-					{label: 'Milestone2', value: 'milestone3'},
-					{label: 'Milestone3', value: 'milestone4'},
-				]
-			},
+			values: [
+				{label: 'Backlog', value: 'backlog'},
+				{label: 'Milestone1', value: 'milestone2'},
+				{label: 'Milestone2', value: 'milestone3'},
+				{label: 'Milestone3', value: 'milestone4'},
+			]
 		},
 		archived: {type: Boolean, label: "Archived"},
 		content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }}
