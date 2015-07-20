@@ -13,7 +13,18 @@
               {{> statusItem}}
               {{/each}}
             </div>
-          </div> cards <span style="color:lightgray"> | <strong>{{numCards}}</strong> cards displayed</span>
+          </div> 
+          <div class="ui inline dropdown">
+            <div class="text">{{selectedVisibility}}</div>
+            <i class="dropdown icon"></i>
+            <div class="menu">              
+              <div id="set-active-filter" class="item">active</div>
+              <div id="set-archived-filter" class="item">archived</div>
+            </div>
+          </div>
+          cards 
+
+          <div style="color:lightgray"><strong>{{numCards}}</strong> active | <strong>{{numArchivedCards}}</strong> archived </div>
         </span>
       </div>      
     </div>
@@ -42,7 +53,7 @@
       </div>
     </div>-->
     <div class="content" style="margin-top:5px">
-      <a id="title-link" class="header">{{title}}</a> 
+      <a id="title-link" class="header {{archivedClass}}">{{title}}</a> 
       <div class="right floated content">                
             {{> fieldGridWidget card=this gridType="miniFieldGrid"}}
       </div>

@@ -17,3 +17,7 @@ body {
 	font-size: 11px !important;
 	color:gray !important;
 }
+
+a.archived {
+	text-decoration: line-through;
+}
