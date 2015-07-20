@@ -48,7 +48,7 @@ Template.cardListView.events({
 })
 
 Template.cardItem.events({
-	'click #show-more-button': function() {		
+	'click #title-link': function() {		
 		Boom.Router.showCardDetailPage(this);
 	}
 });

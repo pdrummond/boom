@@ -1,18 +1,15 @@
-<template name="fieldGridWidget">
-  <button class="fluid ui button {{topFieldColor}}">{{topFieldContent}}</button>
-  <div class="ui buttons">
+<template name="fieldGridWidget">  
+  <div class="ui buttons" style="float:right">
+  
     {{#each bottomFieldValues}}
       {{> bottomField}}
     {{/each}}
+    <button class="ui button {{topFieldColor}}" style="width:120px">{{topFieldContent}}</button>
   </div>  
 </template>
 
 <template name="bottomField">
-  <button class="ui button {{color}}">
-
-      <span style="color:#A5A5A5;text-transform:uppercase;font-size:10px">{{field}}</span><br/>
-
-    {{value}}
-    
+  <button class="ui button {{color}}" style="width:90px">
+      <span style="color:#A5A5A5;text-transform:uppercase;font-size:10px">{{field}}</span><br/>{{value}}    
   </button>  
 </template>

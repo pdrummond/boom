@@ -33,23 +33,25 @@
 </template>
 
 <template name="cardItem">
-  <div class="item">  
-    <div class="ui image">
-      {{> fieldGridWidget card=this gridType="miniFieldGrid"}}      
-    </div>    
-    <div class="content" style="margin-top:5px">
-      <a class="header">{{title}}</a> 
-      <div class="meta">        
-      </div>          
-      <div class="description">
-        {{#markdown}} {{content}} {{/markdown}}
-      </div>
-      <div class="extra">
-        <div id="show-more-button" class="ui left floated basic tiny button">
-          Show More
-          <i class="right chevron icon"></i>
+  <div class="item"> 
+    <!--<div class="ui image">
+      <div class="ui equal width center aligned padded grid">
+        <div class="olive column">
+        {{status}}
         </div>
       </div>
-    </div>
+    </div>-->
+    <div class="content" style="margin-top:5px">
+      <a id="title-link" class="header">{{title}}</a> 
+      <div class="right floated content">                
+            {{> fieldGridWidget card=this gridType="miniFieldGrid"}}
+      </div>
+      <div class="meta">     
+        Paul Drummond BOOM   
+      </div>          
+      <div class="description" style="font-size:14px">
+        {{#markdown}} {{truncate content=content size=200}} {{/markdown}}
+      </div>      
+    </div>    
   </div>
 </template>

@@ -24,6 +24,7 @@ Package.onUse(function(api) {
     'client/helpers/datetime-helpers.js',
     'client/helpers/card-helpers.js',
     'client/helpers/board-helpers.js',
+    'client/helpers/content-helpers.js',
     'client/templates/layout.html',
     'client/templates/not-found.html',
     'client/templates/layout.js'
