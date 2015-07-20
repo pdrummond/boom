@@ -13,6 +13,7 @@ Boom.config.addBoardTemplate("SoftwareBoard", {
 		_id: "roadmap",
 		title: "Roadmap",
 		type: "kanbanView",
+		columnFields: ["status", "milestone", "type"],
 		cardType: "TaskCard",
 	}, {
 		_id: "articles",

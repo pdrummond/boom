@@ -28,3 +28,4 @@ boom:createboard-page
 boom:fieldgrid-widget
 boom:editcard-page
 stevezhu:lodash
+boom:statusdropdown-widget

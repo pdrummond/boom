@@ -9,9 +9,7 @@ Template.boardPage.helpers({
 	},
 
 	boardViewTemplate: function() {
-		var views = Boom.BoardTemplates[Session.get("currentBoardTemplate")].views;
-		var currentView = _.find(views, function(view) { return view._id == Session.get("currentBoardViewId")});
-		console.log("currentViewTemplate:" + currentView.type);
+		var currentView = Session.get('currentBoardView');		
 		return currentView.type;
 	}
 });

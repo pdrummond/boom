@@ -1,0 +1,46 @@
+<template name="kanbanView">
+
+    <div class="ui simple dropdown item">
+      {{selectedColumnField}}    
+      <div class="menu">
+        {{#each columnFields}}
+        {{> columnField}}
+        {{/each}}          
+      </div>
+    </div>
+  
+
+  <hr/>
+
+  <div class="" style="display:flex;overflow-x:scroll;">
+    {{#each columns}}
+     {{> column}}
+    {{/each}}
+  </div>
+</template>
+
+<template name="column">
+  <div class="column" style="margin:10px;min-width:230px;min-height:500px">
+    <div class="ui secondary raised segment"><strong>{{label}}</strong>
+      <div class="ui middle aligned selection list">
+        {{#each cards}}
+        {{> card}}
+        {{/each}}
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="card">  
+  <div class="item">
+    <div class="ui raised segment">
+      <div class="content">
+        <div class="header">{{title}}</div>
+      </div>
+    </div>
+  </div>
+</template>
+
+<template name="columnField">
+  <div class="item">{{label}}</div>
+</template>

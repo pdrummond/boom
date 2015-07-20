@@ -16,6 +16,7 @@ Router.route('/board/:boardTemplate/:boardId/:boardViewId', function() {
   Session.set("currentBoardId", this.params.boardId);
   Session.set("currentBoard", board);
   Session.set("currentBoardViewId", this.params.boardViewId);
+  Session.set("currentBoardView", RouteHelpers.getCurrentBoardView());
   this.render("boardPage");
 });
 
@@ -50,6 +51,14 @@ Router.route('/cards/:cardTemplate/edit/:cardId', function() {
     Session.set("currentCard", card);
     this.render("editCardPage");
 });
+
+RouteHelpers = {
+  getCurrentBoardView: function() {
+  var views = Boom.BoardTemplates[Session.get("currentBoardTemplate")].views;
+    var currentView = _.find(views, function(view) { return view._id == Session.get("currentBoardViewId")});
+    return currentView;
+  }
+}
 
 
 
