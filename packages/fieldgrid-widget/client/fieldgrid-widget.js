@@ -10,11 +10,9 @@ Template.fieldGridWidget.helpers({
 	},
 
 	topFieldColor: function() {
-		var topFieldMetaData = Boom.CardTemplates[this.card.templateName][this.gridType].topField;
-		if(topFieldMetaData.color == null) {
-			return "black";
-		}
-		return _.isFunction(topFieldMetaData.color) ? topFieldMetaData.color(this) : topFieldMetaData.color;
+		var topField = Boom.CardTemplates[this.card.templateName][this.gridType].topField.field;
+		var field = _.findWhere(Boom.CardTemplates[this.card.templateName].fields[topField].values, {value: this.card.status});		
+		return field.color;
 	},
 
 	bottomFieldValues: function() {

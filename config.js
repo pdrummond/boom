@@ -53,13 +53,13 @@ Boom.config.addCardTemplate("TaskCard", {
 			type: String, 
 			label: "Status", 
 			values: [
-				{label: 'Open', value: 'open'},
-				{label: 'In Progress', value: 'in-progress'},
-				{label: 'Blocked', value: 'blocked'},
-				{label: 'In Test', value: 'in-test'},
-				{label: 'Resolved', value: 'resolved'},
-				{label: 'Closed', value: 'closed'},
-			]		
+				{label: 'Open', value: 'open', color: 'olive'},
+				{label: 'In Progress', value: 'in-progress', color: 'teal'},
+				{label: 'Blocked', value: 'blocked', color: 'red'},
+				{label: 'In Test', value: 'in-test', color: 'green'},
+				{label: 'Resolved', value: 'resolved', color: 'blue'},
+				{label: 'Closed', value: 'closed', color: 'black'},
+			]
 		},
 		milestone: { 
 			type: String, 
@@ -75,17 +75,7 @@ Boom.config.addCardTemplate("TaskCard", {
 		content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }}
 	},
 	miniFieldGrid: {
-		topField: {field: 'status', color: function(ctx) {
-			switch(ctx.card.status) {
-				case 'open': return 'olive';
-				case 'in-progress': return 'teal';
-				case 'blocked': return 'red';
-				case 'in-test': return 'green';
-				case 'resolved': return 'blue';
-				case 'closed': return 'black';
-				default: return 'black';
-			}			
-		}},
+		topField: {field: 'status'},
 		bottomFields: [{label: "type", field: 'type', icon: function(ctx) {
 			switch(ctx.value) {
 				case 'task': return 'fa-tasks';
