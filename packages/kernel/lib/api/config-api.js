@@ -23,13 +23,14 @@ Boom.config = {
       return afField;
 
     });
-    console.log("attrs.schema = " + JSON.stringify(attrs.schema, null, 4));
 
     attrs.schema = _.extend(attrs.schema, {
-      templateName: {type: String, optional:true, autoform: {omit:true}},
-      createdAt: {type: Number, optional:true, autoform: {omit:true}},
-      boardId: {type: String, optional:true, autoform: {omit:true}}
+      templateName: {type: String, optional:true, autoform: {omit:true}},      
+      boardId: {type: String, optional:true, autoform: {omit:true}},
+      createdAt: Boom.SchemaHelpers.createdAt,
+      updatedAt: Boom.SchemaHelpers.updatedAt
     });
+    console.log("attrs.schema = " + JSON.stringify(attrs.schema, null, 4));
     
     var collection = new Mongo.Collection(templateName);
     collection.attachSchema(new SimpleSchema(attrs.schema));
@@ -45,7 +46,7 @@ Boom.config = {
       createdAt: {type: Number, optional: true, autoform: {omit:true}}
     });
 
-  	var collection = new Mongo.Collection(templateName);
+    var collection = new Mongo.Collection(templateName);
     collection.attachSchema(new SimpleSchema(attrs.fields));
     Boom.BoardCollections[templateName] = collection;
     Boom.BoardTemplates[templateName] = _.extend(attrs, {

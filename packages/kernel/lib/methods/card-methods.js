@@ -14,7 +14,7 @@ Meteor.methods({
 		/*attrs = _.extend(attrs, {			
 			createdAt: new Date().getTime(),
 			templateName: templateName,
-		});*/		
+		});*/
 		Boom.CardCollections[templateName].update(cardId, updateDoc);				
 	}
 });

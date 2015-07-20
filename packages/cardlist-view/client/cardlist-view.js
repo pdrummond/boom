@@ -11,8 +11,8 @@ Template.cardListView.helpers({
 		var archivedFilter = Session.get('cardListView.archivedFilter');
 		if(archivedFilter) {
 			criteria.archived = archivedFilter.value;
-		}
-		return Boom.CardCollections.TaskCard.find(criteria);
+		}		
+		return Boom.CardCollections.TaskCard.find(criteria, {sort: {updatedAt: -1}});
 	},	
 
 	numCards: function() {
@@ -46,6 +46,16 @@ Template.cardListView.events({
 		Session.set('cardListView.statusFilter', null);
 	}
 })
+
+Template.cardItem.helpers({
+	lastUpdatedMsg: function() {
+		if(moment(this.createdAt).isSame(this.updatedAt)) {
+			return "Created";
+		} else {
+			return "Last updated ";
+		}
+	}
+});
 
 Template.cardItem.events({
 	'click #title-link': function() {		

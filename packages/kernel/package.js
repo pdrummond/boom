@@ -6,7 +6,7 @@ Package.describe({
 
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
-  api.use(['meteor-platform', 'iron:router', 'semantic:ui', 'fabienb4:autoform-semantic-ui', 'stevezhu:lodash']);
+  api.use(['meteor-platform', 'iron:router', 'momentjs:moment', 'semantic:ui', 'fabienb4:autoform-semantic-ui', 'stevezhu:lodash']);
   api.addFiles([
     'kernel.js',    
     'lib/router.js', 
@@ -15,7 +15,8 @@ Package.onUse(function(api) {
     'lib/api/config-api.js',
     'lib/api/router-api.js',
     'lib/methods/board-methods.js',
-    'lib/methods/card-methods.js'
+    'lib/methods/card-methods.js',
+    'lib/helpers/schema-helpers.js',
     ]);
 
   api.addFiles([    
@@ -24,7 +25,7 @@ Package.onUse(function(api) {
     'client/helpers/datetime-helpers.js',
     'client/helpers/card-helpers.js',
     'client/helpers/board-helpers.js',
-    'client/helpers/content-helpers.js',
+    'client/helpers/content-helpers.js',    
     'client/templates/layout.html',
     'client/templates/not-found.html',
     'client/templates/layout.js'

@@ -47,7 +47,7 @@
             {{> fieldGridWidget card=this gridType="miniFieldGrid"}}
       </div>
       <div class="meta">     
-        Paul Drummond BOOM   
+        {{lastUpdatedMsg}} {{formatTime updatedAt}}  
       </div>          
       <div class="description" style="font-size:14px">
         {{#markdown}} {{truncate content=content size=200}} {{/markdown}}
