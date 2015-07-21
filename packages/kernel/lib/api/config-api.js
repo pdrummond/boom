@@ -12,7 +12,8 @@ Boom.config = {
     attrs.schema = lodash.mapValues(attrs.fields, function(field) {      
       var afField = {
         type: field.type,
-        label: field.label        
+        label: field.label,
+        optional: field.optional || false,
       };
       if(field.values) {
         afField.allowedValues = _.map(field.values, function(v) { return v.value});
