@@ -18,6 +18,8 @@ Package.onUse(function(api) {
     'lib/methods/board-methods.js',
     'lib/methods/card-methods.js',
     'lib/helpers/schema-helpers.js',
+    'lib/collections/channel-collection.js',
+    'lib/collections/message-collection.js'
     ]);
 
   api.addFiles([    
@@ -32,7 +34,9 @@ Package.onUse(function(api) {
     'client/templates/layout.js'
     ], 'client');
 
-  api.export(['lodash', 'Boom', 'Boards', 'Cards', 'BoardTemplates', 'formatTime']);
+  api.addFiles('server/fixtures.js');
+
+  api.export(['lodash', 'Boom', 'Boards', 'Cards', 'Channels', 'Messages', 'BoardTemplates', 'formatTime']);
 
 });
 

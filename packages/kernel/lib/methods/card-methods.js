@@ -5,7 +5,16 @@ Meteor.methods({
 			createdAt: new Date().getTime(),
 			templateName: templateName,
 		});		
-		var cardId = Boom.CardCollections[templateName].insert(attrs);		
+		var cardId = Boom.CardCollections[templateName].insert(attrs);
+
+		var channelId = Channels.insert({
+    		title: attrs.title,
+    		channelType: 'card',
+    		boardId: attrs.boardId,
+    		cardId: cardId
+  		});
+  		Boom.CardCollections[templateName].update(cardId, {$set: {channelId: channelId}});
+
 		return cardId;
 	},
 

@@ -1,138 +1,89 @@
 <template name="cardDetailPage">
 	{{#with currentCard}}
   <div class="ui text container">
-  <div class="ui vertically divided grid">
-    <div class="two column row">
-      <div class="column">
-        <h1 class="ui header">{{title}}</h1>    
-      </div>
-      <div class="column right aligned">
-        <button id="edit-card-button" class="positive ui button"><i class="fa fa-edit"></i> Edit Card</button>
-      </div>
-    </div>
-  </div>
-  </div>
-  <div class="ui text container">
-<div class="ui equal width center aligned padded grid" style="margin-top:10px !important;margin-bottom:10px !important">
-  <div class="row" >
-    <div class="black column">Status: <strong>OPEN</strong></div>
-  </div>
-  <div class="row">
-    <div class="olive column">
-      <div class="ui mini statistic">
-  		<div class="value">
-    <i class="thumbs up icon"></i> 10
-  </div>
-  <div class="label">
-    Votes
-  </div>
-</div>
-   </div>
-    <div class="blue column">
-      <div class="ui mini statistic">
-  		<div class="value">
-    <i class="comment icon"></i> 500
-  </div>
-  <div class="label">
-    Comments
-  </div>
-</div>
-    </div>
-  </div>
-</div>  	
-
-	<div class="ui fluid accordion">
-	<div class="active title">
-    	<h3><i class="dropdown icon"></i> Content</h3>
-    </div>
-    <div class="active content">
-    {{#markdown}}{{content}}{{/markdown}}    
-    </div>    
-
-	<div class="active title">
-    	<h3><i class="dropdown icon"></i> Comments</h3>
-    </div>
-	<div id="comments-container" class="active content">
-<div class="ui threaded comments">  
-  <div class="comment">
-    <a class="avatar">
-      <i class="user big icon"></i>
-    </a>
-    <div class="content">
-      <a class="author">Matt</a>
-      <div class="metadata">
-        <span class="date">Today at 5:42PM</span>
-      </div>
-      <div class="text">
-        How artistic!
-      </div>
-      <div class="actions">
-        <a class="reply">Reply</a>
-      </div>
-    </div>
-  </div>
-  <div class="comment">
-    <a class="avatar">
-      <i class="user big icon"></i>
-    </a>
-    <div class="content">
-      <a class="author">Elliot Fu</a>
-      <div class="metadata">
-        <span class="date">Yesterday at 12:30AM</span>
-      </div>
-      <div class="text">
-        <p>This has been very useful for my research. Thanks as well!</p>
-      </div>
-      <div class="actions">
-        <a class="reply">Reply</a>
-      </div>
-    </div>
-    <div class="comments">
-      <div class="comment">
-        <a class="avatar">
-          <i class="user big icon"></i>
-        </a>
-        <div class="content">
-          <a class="author">Jenny Hess</a>
-          <div class="metadata">
-            <span class="date">Just now</span>
-          </div>
-          <div class="text">
-            Elliot you are always so right :)
-          </div>
-          <div class="actions">
-            <a class="reply">Reply</a>
-          </div>
+    <div class="ui vertically divided grid">
+      <div class="two column row">
+        <div class="column">
+          <h1 class="ui header">{{title}}</h1>    
+        </div>
+        <div class="column right aligned">
+          <button id="edit-card-button" class="positive ui button"><i class="fa fa-edit"></i> Edit Card</button>
         </div>
       </div>
     </div>
   </div>
-  <div class="comment">
-    <a class="avatar">
-      <i class="user big icon"></i>
-    </a>
-    <div class="content">
-      <a class="author">Joe Henderson</a>
-      <div class="metadata">
-        <span class="date">5 days ago</span>
+  <div class="ui text container">
+    <div class="ui equal width center aligned padded grid" style="margin-top:10px !important;margin-bottom:10px !important">
+      <div class="row" >
+        <div class="black column">Status: <strong>OPEN</strong></div>
       </div>
-      <div class="text">
-        Dude, this is awesome. Thanks so much
+      <div class="row">
+        <div class="olive column">
+          <div class="ui mini statistic">
+            <div class="value">
+              <i class="thumbs up icon"></i> 10
+            </div>
+            <div class="label">
+              Votes
+            </div>
+          </div>
+        </div>
+        <div class="blue column">
+          <div class="ui mini statistic">
+            <div class="value">
+              <i class="comment icon"></i> 500
+            </div>
+            <div class="label">
+              Comments
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="actions">
-        <a class="reply">Reply</a>
+    </div>  	
+
+    <div class="ui fluid accordion">
+     <div class="active title">
+       <h3><i class="dropdown icon"></i> Content</h3>
+     </div>
+     <div class="active content">
+      {{#markdown}}{{content}}{{/markdown}}    
+    </div>    
+
+    <div class="active title">
+    	<h3><i class="dropdown icon"></i> Comments/Activity</h3>
+    </div>
+    <div id="comments-container" class="active content">
+      <div class="ui feed">
+      {{#each cardMessages}}
+        {{> commentMessage}}
+      {{/each}}
+      <form class="ui reply form">
+        <div class="field">
+          <textarea id="create-comment-input" placeholder="Add Comment"></textarea>
+        </div>    
+      </form>
       </div>
     </div>
   </div>
-  <form class="ui reply form">
-    <div class="field">
-      <textarea placeholder="Add Comment"></textarea>
-    </div>    
-  </form>
 </div>
-</div>
-	</div>
-	</div>
+{{/with}}
+</template>
 
-	{{/with}}
+<template name="commentMessage">
+  <div class="event">
+    <div class="label">
+      <img src="http://semantic-ui.com/images/avatar/small/joe.jpg">
+    </div>
+    <div class="content">
+      <div class="summary">
+        <a>Paul Drummond</a>
+        <div class="date">
+          {{formatTime createdAt}}
+        </div>
+      </div>
+      <div class="extra text">
+        {{content}}
+      </div>      
+    </div>
+  </div>
 </template>

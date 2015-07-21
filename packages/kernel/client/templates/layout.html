@@ -1,6 +1,15 @@
 <template name="layout">
-<div class="ui fixed inverted menu">
+ <div class="ui inverted left vertical sidebar menu">      
+      {{#each channels}}
+        {{> channelItem}}
+      {{/each}}
+    </div>
+    <div class="pusher">   
+     <div class="ui fixed inverted menu">
     <div class="ui fluid container">
+      <a id="toggle-sidebar" class="item">
+        <i class="sidebar icon"></i>        
+      </a>
       <div id="home-button" href="#" class="header item" style="cursor:pointer">
         <span style="font-size:20px;color:#FF5F18;font-weight:200"><i class="fa fa-fire"></i> Boom</span>
       </div>      
@@ -24,9 +33,18 @@
       </a>-->
     </div>
   </div>
+      <div class="ui main fluid container" style="min-height:500px;padding-left:50px;padding-right:50px">
+        <div style="margin-top:50px">
+        {{> yield}}
+        </div>
+      </div>
+    </div>
+ 
+    
+     
 
-  <div class="ui main fluid container" style="min-height:500px;margin-top:60px;padding-left:50px;padding-right:50px">
-    {{> yield}}
-  </div>
+</template>
 
+<template name="channelItem">
+  <a class="item"> <i class="home icon"></i>{{title}}</a>
 </template>

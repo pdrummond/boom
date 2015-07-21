@@ -16,7 +16,23 @@ Router.route('/board/:boardTemplate/:boardId/:boardViewId', function() {
   Session.set("currentBoardId", this.params.boardId);
   Session.set("currentBoard", board);
   Session.set("currentBoardViewId", this.params.boardViewId);
-  Session.set("currentBoardView", RouteHelpers.getCurrentBoardView());
+  Session.set("currentBoardView", RouteHelpers.getBoardView(Session.get("currentBoardViewId")));
+  Session.set("currentChannelId", board.channelId);
+  Session.set("currentChannel", Channels.findOne(board.channelId));
+  this.render("boardPage");
+});
+
+Router.route('/board/:boardTemplate/:boardId/channel/:channelId', function() {
+  var boardViewId = "boardroom";
+  var boardTemplate = this.params.boardTemplate;
+  Session.set("currentBoardTemplate", boardTemplate);
+  var board = Boom.BoardCollections[boardTemplate].findOne(this.params.boardId);
+  Session.set("currentBoardId", this.params.boardId);
+  Session.set("currentBoard", board);
+  Session.set("currentBoardViewId", boardViewId);
+  Session.set("currentBoardView", RouteHelpers.getBoardView(boardViewId));
+  Session.set("currentChannelId", this.params.channelId);
+  Session.set("currentChannel", Channels.findOne(this.params.channelId));
   this.render("boardPage");
 });
 
@@ -53,9 +69,9 @@ Router.route('/cards/:cardTemplate/edit/:cardId', function() {
 });
 
 RouteHelpers = {
-  getCurrentBoardView: function() {
+  getBoardView: function(boardViewId) {
   var views = Boom.BoardTemplates[Session.get("currentBoardTemplate")].views;
-    var currentView = _.find(views, function(view) { return view._id == Session.get("currentBoardViewId")});
+    var currentView = _.find(views, function(view) { return view._id == boardViewId});
     return currentView;
   }
 }

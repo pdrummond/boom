@@ -31,5 +31,9 @@ Boom.Router = {
 
 	showEditCardPage: function(card) {
 		Router.go("/cards/" + card.templateName + "/edit/" + card._id);
+	},
+
+	showChannel: function(channel) {
+		Router.go("/board/" + Session.get('currentBoardTemplate') + "/" + Session.get('currentBoardId') + "/channel/" + channel._id);
 	}
 }

@@ -28,6 +28,7 @@ Boom.config = {
     attrs.schema = _.extend(attrs.schema, {
       templateName: {type: String, optional:true, autoform: {omit:true}},      
       boardId: {type: String, optional:true, autoform: {omit:true}},
+      channelId: {type: String, optional:true, autoform: {omit:true}},
       createdAt: Boom.SchemaHelpers.createdAt,
       updatedAt: Boom.SchemaHelpers.updatedAt
     });
@@ -45,8 +46,11 @@ Boom.config = {
   addBoardTemplate: function(templateName, attrs) {
     attrs.fields = _.extend(attrs.fields, {
       templateName: {type: String, optional: true, autoform: {omit:true}},
+      channelId: {type: String, optional: true, autoform: {omit:true}},
       createdAt: {type: Number, optional: true, autoform: {omit:true}}
     });
+
+    console.log("attrs.fields: = " + JSON.stringify(attrs.fields, null, 4));
 
     var collection = new Mongo.Collection(templateName);
     collection.attachSchema(new SimpleSchema(attrs.fields));

@@ -5,6 +5,10 @@ Boom.config.addBoardTemplate("SoftwareBoard", {
 		description: {type: String, label: "Description", max: 2000, autoform: { rows: 10 }},		
 	},
 	views: [{
+		_id: "boardroom",
+		title: "Boardroom",
+		type: "boardRoomPage"		
+	}, {
 		_id: "cards",
 		title: "Cards",
 		type: "cardListView",
