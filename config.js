@@ -71,9 +71,9 @@ Boom.config.addCardTemplate("TaskCard", {
 			label: "Milestone", 
 			values: [
 				{label: 'Backlog', value: 'backlog'},
-				{label: 'Milestone1', value: 'milestone2'},
-				{label: 'Milestone2', value: 'milestone3'},
-				{label: 'Milestone3', value: 'milestone4'},
+				{label: 'Milestone1', value: 'milestone1'},
+				{label: 'Milestone2', value: 'milestone2'},
+				{label: 'Milestone3', value: 'milestone3'},
 			]
 		},
 		archived: {type: Boolean, label: "Archived"},
