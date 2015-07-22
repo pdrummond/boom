@@ -1,9 +1,7 @@
-<template name="boardRoomPage">
-
-  <div class="ui info message"><strong><i class="fa fa-info-circle"></i> Welcome to the Boardroom</strong> Here, you can get an live, always up-t-date, view of a board's activity.</div>    
+<template name="boardRoomPage">  
   <div id="channel-container" class="pushable">
     <div class="ui visible left vertical sidebar menu"> 
-    <div class="header item"><i class="icon fire"></i> Hot Channels</div>
+    <div class="header item"><i class="icon fire"></i> Today's Hot Topics</div>
      <a class="active teal item">
       Inbox
       <div class="ui teal pointing left label">1</div>
@@ -20,7 +18,7 @@
     <div class="header item"><i class="icon users"></i> Online Team Members</div>
   </div>
   <div class="pusher" style="padding-left:50px"> 
-    <h3 style="color:gray"><i class="fa fa-comments"></i> {{channelTitle}} Channel</h3>
+    <h3 style="color:gray"><i class="fa fa-comments"></i> {{channelTitle}} Discussion</h3>
     <div class="ui feed" style="overflow: hidden;">
       {{#each messages}}
       {{> message}}
