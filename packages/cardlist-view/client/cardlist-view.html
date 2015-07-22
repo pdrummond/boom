@@ -4,7 +4,7 @@
 
 
   <div class="ui items">
-    <div class="ui relaxed divided items" >
+    <div class="ui items" >
      {{#each cards}}
       {{> cardItem}}			
      {{/each}}
@@ -17,25 +17,25 @@
 </template>
 
 <template name="cardItem">
+  <div class="ui raised segment">
+  <!--<a class="ui red right corner label">
+        <i class="heart icon"></i>
+      </a>-->
   <div class="item"> 
+  
     <!--<div class="ui image">
       <div class="ui equal width center aligned padded grid">
         <div class="olive column">
         {{status}}
         </div>
       </div>
-    </div>-->
-    <div class="content" style="margin-top:5px">
-      <a id="title-link" class="header {{archivedClass}}">{{title}}</a> 
-      <div class="right floated content">                
+    </div>-->    
+    <div class="middle aligned content">
+      <a id="title-link" class="header {{archivedClass}}"><i class="icon tasks"></i> {{title}}</a> 
+      <div style="float:right">
             {{> fieldGridWidget card=this gridType="miniFieldGrid"}}
-      </div>
-      <div class="meta">     
-        {{lastUpdatedMsg}} {{formatTime updatedAt}}  
-      </div>          
-      <div class="description" style="font-size:14px">
-        {{#markdown}} {{truncate content=content size=200}} {{/markdown}}
       </div>      
     </div>    
+  </div>
   </div>
 </template>

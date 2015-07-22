@@ -1,15 +1,31 @@
 <template name="fieldGridWidget">  
-  <div class="ui buttons" style="float:right">
-  
-    {{#each bottomFieldValues}}
-      {{> bottomField}}
-    {{/each}}
-    <button class="ui button {{topFieldColor}}" style="width:120px">{{topFieldContent}}</button>
-  </div>  
+	<div class="ui labels">
+		<img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/joe.jpg">
+		<img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/stevie.jpg">
+	
+		<a class="ui blue label">
+			Message Management
+		</a>
+		<a class="ui teal tag label">
+			OPEN
+		</a>
+		<div class="ui label">  		
+  		Est <div class="detail">2d</div>
+		</div>
+
+
+	<!--<div class="ui buttons" style="float:right">
+
+		{{#each bottomFieldValues}}
+		{{> bottomField}}
+		{{/each}}
+		<button class="ui button {{topFieldColor}}" style="width:120px">{{topFieldContent}}</button>
+	</div> -->
+</div> 
 </template>
 
 <template name="bottomField">
-  <button class="ui button {{color}}" style="width:90px">
-      <span style="color:#A5A5A5;text-transform:uppercase;font-size:10px">{{field}}</span><br/>{{value}}    
-  </button>  
+	<button class="ui button {{color}}" style="width:90px">
+		<span style="color:#A5A5A5;text-transform:uppercase;font-size:10px">{{field}}: {{value}}</span> 
+	</button>  
 </template>
