@@ -1,8 +1,14 @@
 
 Template.cardListView.helpers({
-	cards: function() {				
-		return Boom.CardCollections.TaskCard.find(SearchCriteria.getCriteria(), {sort: {updatedAt: -1}});
-	},	
+	cards: function() {
+		var cardType = 'TaskCard';
+		var cardTypeFilter = Session.get('cardListView.cardTypeFilter');
+		if(cardTypeFilter) {
+			cardType = cardTypeFilter.value;
+		}		
+		return Boom.CardCollections[cardType].find(SearchCriteria.getCriteria(), {sort: {updatedAt: -1}});
+	},
+
 	numCards: function() {		
 		return Boom.CardCollections.TaskCard.find(SearchCriteria.getCriteria()).fetch().length;
 	},
@@ -39,6 +45,14 @@ Template.cardItem.helpers({
 
 	archivedClass: function() {		
 		return this.archived ? "archived" : "";
+	},
+
+	cardIcon: function() {
+		var icon =  Boom.CardTemplates[this.templateName].icon;
+		if(icon == null) {
+			icon = 'fa-square';
+		}
+		return icon;
 	}
 });
 
@@ -97,10 +111,10 @@ Template.statusDropdown.helpers({
 
 Template.visibilityDropdown.helpers({
 	selectedVisibility: function() {
-		var label = "active";
+		var label = "Active";
 		var archived = Session.get('cardListView.archivedFilter');
 		if(archived) {
-			label = "archived";
+			label = "Archived";
 		}
 		return label;
 	}
@@ -112,12 +126,17 @@ Template.statusItem.events({
 	}
 });
 
+Template.cardTypeItem.events({
+	'click': function() {
+		Session.set('cardListView.cardTypeFilter', this);
+	}
+});
+
 SearchCriteria = {
 	getCriteria: function() {
 		var criteria = {
-			boardId: Session.get('currentBoardId'),
-			archived: false			
-		}
+			boardId: Session.get('currentBoardId')			
+		};	
 		var statusFilter = Session.get('cardListView.statusFilter');
 		if(statusFilter) {
 			criteria.status = statusFilter.value;

@@ -1,7 +1,7 @@
 <template name="cardListView">
 
   <div class="ui menu">
-    <div class="ui dropdown item active">
+    <!--<div class="ui dropdown item active">
       <strong>My Open Tasks</strong>
       <i class="dropdown icon"></i>
       <div class="menu">
@@ -9,7 +9,7 @@
         <a class="item">Automotive</a>
         <a class="item">Home</a>
       </div>
-    </div>
+    </div>-->
     {{> cardTypeDropdown }}
     {{> statusDropdown }}
     {{> visibilityDropdown }}
@@ -46,7 +46,7 @@
       </div>
     </div>-->    
     <div class="middle aligned content">
-      <a id="title-link" class="header {{archivedClass}}"><i class="icon tasks"></i> {{title}}</a> 
+      <a id="title-link" class="header {{archivedClass}}"><i class="icon {{cardIcon}}"></i> {{title}}</a> 
       <div style="float:right">
         {{> fieldGridWidget card=this gridType="miniFieldGrid"}}
       </div>      

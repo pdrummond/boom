@@ -14,6 +14,7 @@ Boom.config.addBoardTemplate("SoftwareBoard", {
 		type: "cardListView",
 		filters: {
 			'TaskCard': ['type', 'status', 'milestone'],
+			'StoryCard': ['type'],
 			'ArticleCard': ['type']			
 		}
 	}, {
@@ -45,6 +46,7 @@ Boom.config.addBoardTemplate("SimpleBoard", {
 
 Boom.config.addCardTemplate("TaskCard", {
 	label: "Task",
+	icon: "fa-tasks",
 	fields: {
 		title: { type: String, label: "Title"},
 		type: { 
@@ -91,8 +93,28 @@ Boom.config.addCardTemplate("TaskCard", {
 	}	
 });
 
+Boom.config.addCardTemplate("StoryCard", {
+	label: "Story",
+	icon: "fa-book",
+	fields: {
+		title: { type: String, label: "Title"},		
+		description: {type: String, label: "Description"},
+		type: { 
+			type: String, 
+			label: "Type",
+			defaultValue: 'general',
+			values: [
+				{label: 'General',    	value: 'general',	 icon: 'fa-tasks'},
+				{label: 'Functional',     value: 'functional', 	 icon: 'fa-bug'},
+				{label: 'Non Functional', value: 'non-functional', icon: 'fa-bolt'}
+			]			
+		},
+	}
+});
+
 Boom.config.addCardTemplate("ArticleCard", {
 	label: "Article",
+	icon: "fa-newspaper-o",
 	fields: {
 		title: { type: String, label: "Title"},
 		author: { type: String, label: "Author"},

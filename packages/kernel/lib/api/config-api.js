@@ -45,7 +45,7 @@ Boom.config = {
       updatedAt: Boom.SchemaHelpers.updatedAt
     });
     
-    console.log("attrs.schema = " + JSON.stringify(attrs.schema, null, 4));
+    //console.log("attrs.schema = " + JSON.stringify(attrs.schema, null, 4));
     
     var collection = new Mongo.Collection(templateName);
     collection.attachSchema(new SimpleSchema(attrs.schema));
