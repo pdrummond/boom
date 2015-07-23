@@ -23,7 +23,6 @@ boom:editcard-page@0.0.1
 boom:fieldgrid-widget@0.0.1
 boom:kanban-view@0.0.1
 boom:kernel@0.0.1
-boom:statusdropdown-widget@0.0.1
 callback-hook@1.0.3
 check@1.0.5
 ddp@1.1.0

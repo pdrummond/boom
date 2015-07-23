@@ -1,18 +1,33 @@
 <template name="cardListView">
 
-  {{> statusDropdownWidget}}
-
-
-  <div class="ui items">
-    <div class="ui items" >
-     {{#each cards}}
-      {{> cardItem}}			
-     {{/each}}
-   </div>
+  <div class="ui menu">
+    <div class="ui dropdown item active">
+      <strong>My Open Tasks</strong>
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <a class="item">Electronics</a>
+        <a class="item">Automotive</a>
+        <a class="item">Home</a>
+      </div>
+    </div>
+    {{> cardTypeDropdown }}
+    {{> statusDropdown }}
+    {{> visibilityDropdown }}
+  </div>
+  <div style="color:lightgray"><strong>{{numCards}}</strong> active | <strong>{{numArchivedCards}}</strong> archived </div>
+  <div class="ui segments" >
+   {{#each cards}}
+   {{> cardItem}}			
+   {{/each}}
  </div>
 </template>
 
 <template name="statusItem">
+  <div class="item">{{label}}</div>
+</template>
+
+
+<template name="cardTypeItem">
   <div class="item">{{label}}</div>
 </template>
 
@@ -21,8 +36,8 @@
   <!--<a class="ui red right corner label">
         <i class="heart icon"></i>
       </a>-->
-  <div class="item"> 
-  
+      <div class="item"> 
+
     <!--<div class="ui image">
       <div class="ui equal width center aligned padded grid">
         <div class="olive column">
@@ -33,9 +48,43 @@
     <div class="middle aligned content">
       <a id="title-link" class="header {{archivedClass}}"><i class="icon tasks"></i> {{title}}</a> 
       <div style="float:right">
-            {{> fieldGridWidget card=this gridType="miniFieldGrid"}}
+        {{> fieldGridWidget card=this gridType="miniFieldGrid"}}
       </div>      
     </div>    
   </div>
+</div>
+</template>
+
+
+<template name="cardTypeDropdown">
+  <div class="ui dropdown item"> {{selectedCardType}}
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      {{#each cardTypes}}
+        {{> cardTypeItem}}
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="statusDropdown">
+  <div class="ui dropdown item"> {{selectedStatus}}
+    <i class="dropdown icon"></i>
+    <div class="menu">
+      <div id="clear-status-filter" class="item">All</div>
+      {{#each statusFields}}
+      {{> statusItem}}
+      {{/each}}
+    </div>
+  </div>
+</template>
+
+<template name="visibilityDropdown">
+  <div class="ui dropdown item"> {{selectedVisibility}}
+    <i class="dropdown icon"></i>
+    <div class="menu">              
+      <div id="set-active-filter" class="item">active</div>
+      <div id="set-archived-filter" class="item">archived</div>
+    </div>
   </div>
 </template>

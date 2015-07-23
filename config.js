@@ -12,7 +12,10 @@ Boom.config.addBoardTemplate("SoftwareBoard", {
 		_id: "cards",
 		title: "Cards",
 		type: "cardListView",
-		cardType: "TaskCard",
+		filters: {
+			'TaskCard': ['type', 'status', 'milestone'],
+			'ArticleCard': ['type']			
+		}
 	}, {
 		_id: "roadmap",
 		title: "Roadmap",

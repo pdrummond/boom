@@ -23,8 +23,7 @@ Boom.config = {
         }
       } else if(field.valuesFromCollection) {
         var collection = field.valuesFromCollection;
-        var defaultItem = collection.findOne({default: true});
-        debugger;
+        var defaultItem = collection.findOne({default: true});        
         if(defaultItem) {
           afField.defaultValue = defaultItem._id;
         }
