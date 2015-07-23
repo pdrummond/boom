@@ -14,12 +14,25 @@ Boom.config = {
         type: field.type,
         label: field.label,
         optional: field.optional || false,
+        defaultValue: field.defaultValue
       };
       if(field.values) {
         afField.allowedValues = _.map(field.values, function(v) { return v.value});
         afField.autoform = {
           options: _.map(field.values, function(v) { return {label:v.label, value:v.value}})
         }
+      } else if(field.valuesFromCollection) {
+        var collection = field.valuesFromCollection;
+        var defaultItem = collection.findOne({default: true});
+        debugger;
+        if(defaultItem) {
+          afField.defaultValue = defaultItem._id;
+        }
+        afField.autoform = {
+          options: collection.find().map(function(item) { 
+            return {label:item.title, value:item._id};
+          })
+        };        
       }
       return afField;
 
@@ -33,7 +46,7 @@ Boom.config = {
       updatedAt: Boom.SchemaHelpers.updatedAt
     });
     
-    //console.log("attrs.schema = " + JSON.stringify(attrs.schema, null, 4));
+    console.log("attrs.schema = " + JSON.stringify(attrs.schema, null, 4));
     
     var collection = new Mongo.Collection(templateName);
     collection.attachSchema(new SimpleSchema(attrs.schema));
@@ -50,7 +63,7 @@ Boom.config = {
       createdAt: {type: Number, optional: true, autoform: {omit:true}}
     });
 
-    console.log("attrs.fields: = " + JSON.stringify(attrs.fields, null, 4));
+    //console.log("attrs.fields: = " + JSON.stringify(attrs.fields, null, 4));
 
     var collection = new Mongo.Collection(templateName);
     collection.attachSchema(new SimpleSchema(attrs.fields));

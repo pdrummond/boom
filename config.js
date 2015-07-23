@@ -57,6 +57,7 @@ Boom.config.addCardTemplate("TaskCard", {
 		status: { 
 			type: String, 
 			label: "Status", 
+			defaultValue: 'open',
 			values: [
 				{label: 'Open', value: 'open', color: 'olive'},
 				{label: 'In Progress', value: 'in-progress', color: 'teal'},
@@ -69,12 +70,7 @@ Boom.config.addCardTemplate("TaskCard", {
 		milestone: { 
 			type: String, 
 			label: "Milestone", 
-			values: [
-				{label: 'Backlog', value: 'backlog'},
-				{label: 'Milestone1', value: 'milestone1'},
-				{label: 'Milestone2', value: 'milestone2'},
-				{label: 'Milestone3', value: 'milestone3'},
-			]
+			valuesFromCollection: Milestones,
 		},
 		archived: {type: Boolean, label: "Archived"},
 		content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }}
