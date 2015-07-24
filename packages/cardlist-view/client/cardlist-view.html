@@ -9,10 +9,11 @@
         <a class="item">Automotive</a>
         <a class="item">Home</a>
       </div>
-    </div>-->
-    {{> cardTypeDropdown }}
-    {{> statusDropdown }}
-    {{> visibilityDropdown }}
+    </div>-->    
+    {{> cardTypeDropdown}}
+    {{#each viewFilters}}
+      {{> viewFilterDropdown}}
+    {{/each}}
   </div>
   <div style="color:lightgray"><strong>{{numCards}}</strong> active | <strong>{{numArchivedCards}}</strong> archived </div>
   <div class="ui segments" >
@@ -21,11 +22,6 @@
    {{/each}}
  </div>
 </template>
-
-<template name="statusItem">
-  <div class="item">{{label}}</div>
-</template>
-
 
 <template name="cardTypeItem">
   <div class="item">{{label}}</div>
@@ -67,17 +63,23 @@
   </div>
 </template>
 
-<template name="statusDropdown">
-  <div class="ui dropdown item"> {{selectedStatus}}
+<template name="viewFilterDropdown">
+  <div class="ui dropdown item"> {{selectedFilter}}
     <i class="dropdown icon"></i>
     <div class="menu">
       <div id="clear-status-filter" class="item">All</div>
-      {{#each statusFields}}
-      {{> statusItem}}
+      {{#each filterFields}}
+      {{> filterItem}}
       {{/each}}
     </div>
   </div>
 </template>
+
+
+<template name="filterItem">
+  <div class="item">{{label}}</div>
+</template>
+
 
 <template name="visibilityDropdown">
   <div class="ui dropdown item"> {{selectedVisibility}}
