@@ -64,10 +64,10 @@
 </template>
 
 <template name="viewFilterDropdown">
-  <div class="ui dropdown item"> {{selectedFilter}}
+  <div class="ui dropdown item"> {{{selectedFilter}}}
     <i class="dropdown icon"></i>
     <div class="menu">
-      <div id="clear-status-filter" class="item">All</div>
+      <div class="all-filter-item item">All</div>
       {{#each filterFields}}
       {{> filterItem}}
       {{/each}}

@@ -18,6 +18,7 @@ Template.cardListView.helpers({
 		var result = _.map(Session.get('currentBoardView').filters[selectedCardType], function(field) {
 			var fieldValues = _.map(Boom.CardTemplates[selectedCardType].fields[field].values, function(values) {
 				return _.extend(values, {
+					fieldLabel: Boom.CardTemplates[selectedCardType].fields[field].label,
 					field: field
 				});
 			});
@@ -41,12 +42,7 @@ Template.cardListView.helpers({
 		return Boom.CardCollections.TaskCard.find(SearchCriteria.getArchivedCriteria()).fetch().length;
 	},
 });
-
-Template.cardListView.events({
-	'click #clear-status-filter': function() {
-		Session.set('cardListView.statusFilter', null);
-	}
-});
+	
 
 Template.visibilityDropdown.events({
 	'click #set-active-filter': function() {
@@ -120,16 +116,32 @@ Template.cardTypeDropdown.helpers({
 
 Template.viewFilterDropdown.helpers({	
 	selectedFilter: function() {
-		var label = "All";
+		var selectedFilter = "All";
+		var i = Session.get('boom');
 		var filterCriteria = Session.get('cardListView.filterCriteria');
 		if(filterCriteria) {
-			label = Session.get('cardListView.filterLabels')[this.field];
+			selectedFilter = Session.get('cardListView.filterDetails');
 		}
-		return label;
+		if(selectedFilter[this.field]) {
+			selectedFilter = selectedFilter[this.field].fieldLabel + ": <strong style='margin-left:5px'>" + selectedFilter[this.field].label + "</strong>";
+		} 
+		return selectedFilter;
 	},
 
 	filterFields: function() {
 		return this.values;
+	}
+});
+
+Template.viewFilterDropdown.events({
+	'click .all-filter-item': function() {
+		var criteria = Session.get('cardListView.filterCriteria');
+		if(criteria) {
+			criteria[this.field] = "*";
+		}
+		Session.set('cardListView.filterCriteria', criteria);
+		var boom = Session.get('boom') || 0;
+		Session.set('boom', boom+1);
 	}
 });
 
@@ -141,12 +153,12 @@ Template.filterItem.events({
 		}
 		criteria[this.field] = this.value;
 		Session.set("cardListView.filterCriteria", criteria);
-		var filterLabels = Session.get('cardListView.filterLabels');
-		if(labels == null) {
-			labels = {};
+		var filterDetails = Session.get('cardListView.filterDetails');
+		if(filterDetails == null) {
+			filterDetails = {};
 		}
-		labels[this.field] = this.label;
-		Session.set("cardListView.filterLabels", labels);
+		filterDetails[this.field] = this;
+		Session.set("cardListView.filterDetails", filterDetails);
 	}
 });
 Template.visibilityDropdown.helpers({
