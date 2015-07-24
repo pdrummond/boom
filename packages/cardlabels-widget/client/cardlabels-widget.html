@@ -1,0 +1,14 @@
+<template name="cardLabelsWidget">
+	<span class="ui labels">
+		{{#each labels}}
+			{{> label}}
+		{{/each}}        
+	</span>
+</template>
+
+<template name="label">
+	<a class="ui {{color}} label">
+	 	<i class="{{icon}} icon"></i>
+		{{this}}
+	</a>
+</template>

@@ -21,6 +21,7 @@ Boom.config = {
         afField.autoform = {
           options: _.map(field.values, function(v) { return {label:v.label, value:v.value}})
         }
+
       } else if(field.valuesFromCollection) {
         var collection = field.valuesFromCollection;
         var defaultItem = collection.findOne({default: true});        
@@ -42,7 +43,10 @@ Boom.config = {
       boardId: {type: String, optional:true, autoform: {omit:true}},
       channelId: {type: String, optional:true, autoform: {omit:true}},
       createdAt: Boom.SchemaHelpers.createdAt,
-      updatedAt: Boom.SchemaHelpers.updatedAt
+      updatedAt: Boom.SchemaHelpers.updatedAt,
+      labels: {type: Array,optional: true, minCount: 0, maxCount: 5},
+      "labels.$": { type: Object, optional:true},
+      "labels.$.name": {type: String, optional:true},
     });
     
     //console.log("attrs.schema = " + JSON.stringify(attrs.schema, null, 4));

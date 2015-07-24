@@ -1,3 +1,8 @@
+Boom.config.labels = {
+	Label1: {color:'teal'},
+	Messages: {color:'red', icon:'bomb'}
+};
+
 Boom.config.addBoardTemplate("SoftwareBoard", {	
 	label: "Software Management",
 	fields: {
@@ -75,12 +80,13 @@ Boom.config.addCardTemplate("IssueCard", {
 		milestone: { 
 			type: String, 
 			label: "Milestone", 
+			optional: true,
 			valuesFromCollection: Milestones,
-		},
+		},		
 		archived: {type: Boolean, label: "Archived"},
 		content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }}
 	},
-	//widgets: [{name: 'cardStatusWidget'}, {name: 'cardLabelsWidget'}],
+	rightWidgets: [{name: 'cardLabelsWidget'}],
 	leftWidgets: [{name: 'cardStatusWidget'}],	
 	
 	miniFieldGrid: {
