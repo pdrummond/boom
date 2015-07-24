@@ -12,7 +12,7 @@
     </div>-->    
     {{> cardTypeDropdown}}
     {{#each viewFilters}}
-      {{> viewFilterDropdown}}
+    {{> viewFilterDropdown}}
     {{/each}}
   </div>
   <div style="color:lightgray"><strong>{{numCards}}</strong> active | <strong>{{numArchivedCards}}</strong> archived </div>
@@ -34,19 +34,30 @@
       </a>-->
       <div class="item"> 
 
-    <!--<div class="ui image">
-      <div class="ui equal width center aligned padded grid">
-        <div class="olive column">
-        {{status}}
-        </div>
+    <div class="middle aligned content">      
+      <div class="ui labels" style="float:left">
+        {{#each leftCardItemWidgets}}
+            {{> Template.dynamic template=name}}
+        {{/each}}
       </div>
-    </div>-->    
-    <div class="middle aligned content">
       <a id="title-link" class="header {{archivedClass}}"><i class="icon {{cardIcon}}"></i> {{title}}</a> 
-      <div style="float:right">
-        {{> fieldGridWidget card=this gridType="miniFieldGrid"}}
-      </div>      
-    </div>    
+      <div style="float:right;position:relative;top:-5px">
+        <div class="ui labels">
+          <img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/joe.jpg">
+          <img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/stevie.jpg">
+
+          <a class="ui blue label">
+            Message Management
+          </a>
+          <div class="ui label">      
+            Est <div class="detail">2d</div>
+          </div> 
+          {{#each rightCardItemWidgets}}
+            {{> Template.dynamic template=name}}
+          {{/each}}
+        </div>      
+      </div>    
+    </div>
   </div>
 </div>
 </template>
@@ -57,7 +68,7 @@
     <i class="dropdown icon"></i>
     <div class="menu">
       {{#each cardTypes}}
-        {{> cardTypeItem}}
+      {{> cardTypeItem}}
       {{/each}}
     </div>
   </div>

@@ -13,7 +13,7 @@ Boom.config.addBoardTemplate("SoftwareBoard", {
 		title: "Cards",
 		type: "cardListView",
 		filters: {
-			'TaskCard': ['type', 'status', 'milestone'],
+			'IssueCard': ['type', 'status', 'milestone'],
 			'StoryCard': ['type'],
 			'ArticleCard': ['type']			
 		}
@@ -27,7 +27,7 @@ Boom.config.addBoardTemplate("SoftwareBoard", {
 		_id: "articles",
 		title: "Articles",
 		type: "cardListView",
-		cardType: "ArticleCard"
+		cardType: "IssueCard"
 	}]
 });	
 
@@ -40,13 +40,13 @@ Boom.config.addBoardTemplate("SimpleBoard", {
 	views: [{
 		title: "Board",
 		type: "kanbanView",
-		cardType: "TaskCard",
+		cardType: "IssueCard",
 	}]
 });	
 
-Boom.config.addCardTemplate("TaskCard", {
-	label: "Task",
-	icon: "fa-tasks",
+Boom.config.addCardTemplate("IssueCard", {
+	label: "Issue",
+	icon: "fa-ticket",
 	fields: {
 		title: { type: String, label: "Title"},
 		type: { 
@@ -80,6 +80,9 @@ Boom.config.addCardTemplate("TaskCard", {
 		archived: {type: Boolean, label: "Archived"},
 		content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }}
 	},
+	//widgets: [{name: 'cardStatusWidget'}, {name: 'cardLabelsWidget'}],
+	leftWidgets: [{name: 'cardStatusWidget'}],	
+	
 	miniFieldGrid: {
 		topField: {field: 'status'},
 		bottomFields: [{label: "type", field: 'type', icon: function(ctx) {

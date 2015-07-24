@@ -1,7 +1,7 @@
 
 Template.cardListView.helpers({
 	cards: function() {
-		var cardType = 'TaskCard';
+		var cardType = CardListHelpers.getDefaultCardType();
 		var cardTypeFilter = Session.get('cardListView.cardTypeFilter');
 		if(cardTypeFilter) {
 			cardType = cardTypeFilter.value;
@@ -14,7 +14,7 @@ Template.cardListView.helpers({
 	},
 
 	viewFilters: function() {
-		var selectedCardType = Session.get('cardListView.cardType') || "TaskCard";
+		var selectedCardType = Session.get('cardListView.cardType') || CardListHelpers.getDefaultCardType();
 		var result = _.map(Session.get('currentBoardView').filters[selectedCardType], function(field) {
 			var fieldValues = _.map(Boom.CardTemplates[selectedCardType].fields[field].values, function(values) {
 				return _.extend(values, {
@@ -34,12 +34,14 @@ Template.cardListView.helpers({
 		return result;
 	},
 
-	numCards: function() {		
-		return Boom.CardCollections.TaskCard.find(SearchCriteria.getCriteria()).fetch().length;
+	numCards: function() {
+		var selectedCardType = Session.get('cardListView.cardType') || CardListHelpers.getDefaultCardType();
+		return Boom.CardCollections[selectedCardType].find(SearchCriteria.getCriteria()).fetch().length;
 	},
 
 	numArchivedCards: function() {
-		return Boom.CardCollections.TaskCard.find(SearchCriteria.getArchivedCriteria()).fetch().length;
+		var selectedCardType = Session.get('cardListView.cardType') || CardListHelpers.getDefaultCardType();
+		return Boom.CardCollections[selectedCardType].find(SearchCriteria.getArchivedCriteria()).fetch().length;
 	},
 });
 	
@@ -73,7 +75,17 @@ Template.cardItem.helpers({
 			icon = 'fa-square';
 		}
 		return icon;
-	}
+	},
+
+	leftCardItemWidgets: function() {
+		return CardListHelpers.cardItemWidgets(this, "leftWidgets");
+	},
+
+	rightCardItemWidgets: function() {
+		return CardListHelpers.cardItemWidgets(this, "rightWidgets");
+	},
+
+
 });
 
 Template.cardItem.events({
@@ -207,3 +219,17 @@ SearchCriteria = {
 		return criteria;
 	}
 };
+
+CardListHelpers = {
+	getDefaultCardType: function() {
+		return _.keys(Session.get('currentBoardView').filters)[0];
+	},
+
+	cardItemWidgets: function(card, widgetMeta) {
+		return _.map(Boom.CardTemplates[card.templateName][widgetMeta], function(widget) {
+			return _.extend(widget, {
+				card: card,
+			});
+		});
+	}
+}
