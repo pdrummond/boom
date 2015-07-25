@@ -3,6 +3,7 @@ Template.cardListView.helpers({
 	cards: function() {
 		var filter = {};
 		var filterCriteria = Session.get('filterCriteria');
+		var remainingText = filterCriteria;
 		var re = new RegExp("([\\w\\.-]+)\\s*:\\s*([\\w\\.-]+)", "g");
 		var match = re.exec(filterCriteria);
 		while (match != null) {	   
@@ -13,8 +14,14 @@ Template.cardListView.helpers({
 			} else if(value == "false") {
 				value = false;
 			}
+			remainingText = remainingText.replace(field, '');
+			remainingText = remainingText.replace(value, '');
+			remainingText = remainingText.replace(/:/g, '');
 			filter[field] = value; 
 			match = re.exec(filterCriteria);			
+		}
+		if(remainingText && remainingText.length > 0) {
+			filter["$or"] = [{title: {$regex:remainingText}}, {content: {$regex:remainingText}}];
 		}
 		var cardType = CardListHelpers.getDefaultCardType();
 		var cardTypeFilter = Session.get('cardTypeFilter');
