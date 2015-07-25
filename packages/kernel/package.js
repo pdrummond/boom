@@ -20,7 +20,8 @@ Package.onUse(function(api) {
     'lib/helpers/schema-helpers.js',
     'lib/collections/channel-collection.js',
     'lib/collections/message-collection.js',
-    'lib/collections/milestone-collection.js'
+    'lib/collections/milestone-collection.js',
+    'lib/collections/filter-collection.js',
     ]);
 
   api.addFiles([    
@@ -37,7 +38,7 @@ Package.onUse(function(api) {
 
   api.addFiles('server/fixtures.js');
 
-  api.export(['lodash', 'Boom', 'Boards', 'Cards', 'Channels', 'Messages', 'Milestones', 'BoardTemplates', 'formatTime']);
+  api.export(['lodash', 'Boom', 'Boards', 'Cards', 'Channels', 'Messages', 'Milestones', 'Filters', 'BoardTemplates', 'formatTime']);
 
 });
 

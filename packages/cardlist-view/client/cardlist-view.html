@@ -1,29 +1,29 @@
 <template name="cardListView">
 
-  <div class="ui menu">
-    <div class="ui dropdown item" style="background:rgb(235, 235, 235)">
-      <div class="text"><strong>My Open Tasks</strong></div>
+<h2>
+<div class="ui inline dropdown">
+      <div class="text"><strong>{{filterTitle}}</strong></div>
       <i class="dropdown icon"></i>
       <div class="menu">
-        <a class="item">Electronics</a>
-        <a class="item">Automotive</a>
-        <a class="item">Home</a>
+        <div id="all-filter" class="item"><i class="square icon"></i> All </div>
+        <div class="divider"></div>
+
+        {{#each filters}}
+        {{> filter}}
+        {{/each}}
       </div>
     </div>
+  <div class="ui menu">    
     {{> cardTypeDropdown}}
     <div class="item" style="display:flex;flex:1">
      <div class="ui left icon action input">
       <i class="filter link icon"></i>
-      <input id="filter-input" type="text" placeholder="type here to filter list">
-      <div class="ui button">Search</div>
+      <input id="filter-input" type="text" placeholder="type here to filter list" value="{{filterCriteria}}">
+      <div id="save-filter" class="ui button"><i class='save icon'></i> Save Filter</div>              
     </div>
   </div>
-
-  <!--
-  {{#each viewFilters}}
-  {{> viewFilterDropdown}}
-  {{/each}}-->
 </div>
+</h2>
 <div style="color:lightgray"><strong>{{numCards}}</strong> active | <strong>{{numArchivedCards}}</strong> archived </div>
 <div class="ui segments" >
  {{#each cards}}
@@ -101,4 +101,8 @@
         <div id="set-archived-filter" class="item">archived</div>
       </div>
     </div>
+  </template>
+
+  <template name="filter">
+    <div class="item">{{title}}</div>
   </template>

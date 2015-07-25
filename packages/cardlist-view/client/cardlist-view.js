@@ -31,6 +31,19 @@ Template.cardListView.helpers({
 		return Boom.CardCollections[cardType].find(filter, {sort: {updatedAt: -1}});
 	},
 
+	filterTitle: function() {
+		var title = "All";
+		var currentFilter = Session.get('currentFilter');
+		if(currentFilter) {
+			title = currentFilter.title;			
+		}
+		return title;
+	},
+
+	filterCriteria: function() {
+		return Session.get('filterCriteria');
+	},
+
 	viewFilters: function() {
 		var selectedCardType = Session.get('cardListView.cardType') || CardListHelpers.getDefaultCardType();
 		var result = _.map(Session.get('currentBoardView').filters[selectedCardType], function(field) {
@@ -61,11 +74,33 @@ Template.cardListView.helpers({
 		var selectedCardType = Session.get('cardListView.cardType') || CardListHelpers.getDefaultCardType();
 		return Boom.CardCollections[selectedCardType].find(SearchCriteria.getArchivedCriteria()).fetch().length;
 	},
+
+	filters: function() {
+		return Filters.find();
+	}
 });
 
 Template.cardListView.events({
 	'keyup #filter-input': function(ev) {
 		CardListHelpers.onFilterInput(ev);
+	},
+
+	'click #save-filter': function() {
+		var filter = $("#filter-input").val();		
+		var title = prompt("Filter Title");		
+		if(title != null) {
+			Meteor.call('createFilter', {title: title, filter: filter, cardType: Session.get('cardTypeFilter')}, function(error, result) {
+				if(error) {
+					alert("Error creating filter: " + error);
+				}
+			});
+		}
+		
+	},
+
+	'click #all-filter': function() {
+		Session.set('currentFilter', null);
+		Session.set('filterCriteria', null);
 	}
 })
 
@@ -265,3 +300,11 @@ CardListHelpers = {
 		});
 	}
 }
+
+Template.filter.events({
+	'click': function() {
+		Session.set('currentFilter', this);
+		Session.set('cardTypeFilter', this.cardType);
+		Session.set('filterCriteria', this.filter);
+	}
+});
