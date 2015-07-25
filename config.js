@@ -51,6 +51,7 @@ Boom.config.addBoardTemplate("SimpleBoard", {
 
 Boom.config.addCardTemplate("IssueCard", {
 	label: "Issue",
+	labelPlural: "Issues",
 	icon: "fa-ticket",
 	fields: {
 		title: { type: String, label: "Title"},
@@ -104,6 +105,7 @@ Boom.config.addCardTemplate("IssueCard", {
 
 Boom.config.addCardTemplate("StoryCard", {
 	label: "Story",
+	labelPlural: "Stories",
 	icon: "fa-book",
 	fields: {
 		title: { type: String, label: "Title"},		
@@ -123,6 +125,7 @@ Boom.config.addCardTemplate("StoryCard", {
 
 Boom.config.addCardTemplate("ArticleCard", {
 	label: "Article",
+	labelPlural: "Articles",
 	icon: "fa-newspaper-o",
 	fields: {
 		title: { type: String, label: "Title"},

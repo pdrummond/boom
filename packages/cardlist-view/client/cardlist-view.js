@@ -1,16 +1,27 @@
 
 Template.cardListView.helpers({
 	cards: function() {
+		var filter = {};
+		var filterCriteria = Session.get('filterCriteria');
+		var re = new RegExp("([\\w\\.-]+)\\s*:\\s*([\\w\\.-]+)", "g");
+		var match = re.exec(filterCriteria);
+		while (match != null) {	   
+			var field = match[1].trim();
+			var value = match[2].trim();
+			if(value == "true") {
+				value = true;
+			} else if(value == "false") {
+				value = false;
+			}
+			filter[field] = value; 
+			match = re.exec(filterCriteria);			
+		}
 		var cardType = CardListHelpers.getDefaultCardType();
-		var cardTypeFilter = Session.get('cardListView.cardTypeFilter');
+		var cardTypeFilter = Session.get('cardTypeFilter');
 		if(cardTypeFilter) {
 			cardType = cardTypeFilter.value;
 		}
-		var filterCriteria = Session.get('cardListView.filterCriteria');
-		if(filterCriteria == null) {
-			filterCriteria = {};
-		}
-		return Boom.CardCollections[cardType].find(filterCriteria, {sort: {updatedAt: -1}});
+		return Boom.CardCollections[cardType].find(filter, {sort: {updatedAt: -1}});
 	},
 
 	viewFilters: function() {
@@ -44,7 +55,13 @@ Template.cardListView.helpers({
 		return Boom.CardCollections[selectedCardType].find(SearchCriteria.getArchivedCriteria()).fetch().length;
 	},
 });
-	
+
+Template.cardListView.events({
+	'keyup #filter-input': function(ev) {
+		CardListHelpers.onFilterInput(ev);
+	}
+})
+
 
 Template.visibilityDropdown.events({
 	'click #set-active-filter': function() {
@@ -83,9 +100,7 @@ Template.cardItem.helpers({
 
 	rightCardItemWidgets: function() {
 		return CardListHelpers.cardItemWidgets(this, "rightWidgets");
-	},
-
-
+	}
 });
 
 Template.cardItem.events({
@@ -98,14 +113,13 @@ Template.cardListView.onRendered(function() {
 	this.$('.ui.dropdown').dropdown();
 });
 
-
 Template.cardTypeDropdown.helpers({	
-	selectedCardType: function() {
-		var label;
-		var cardTypeFilter = Session.get('cardListView.cardTypeFilter');
+	selectedCardType: function() {		
+		var label = Boom.CardTemplates[CardListHelpers.getDefaultCardType()].labelPlural;
+		var cardTypeFilter = Session.get('cardTypeFilter');
 		if(cardTypeFilter) {
 			label = cardTypeFilter.label;
-		}
+		}		
 		return label;
 	},
 
@@ -115,7 +129,7 @@ Template.cardTypeDropdown.helpers({
 			var label = 'Unknown';
 			var t = Boom.CardTemplates[cardTemplate];
 			if(t) {
-				label = t.label;
+				label = t.labelPlural;
 			}
 			return {
 				label: label,
@@ -186,7 +200,7 @@ Template.visibilityDropdown.helpers({
 
 Template.cardTypeItem.events({
 	'click': function() {
-		Session.set('cardListView.cardTypeFilter', this);
+		Session.set('cardTypeFilter', this);
 	}
 });
 
@@ -221,6 +235,17 @@ SearchCriteria = {
 };
 
 CardListHelpers = {
+
+	onFilterInput: function() {
+		var self = this;
+		if(this.keyTimer) {
+			clearTimeout(this.keyTimer);
+		}
+		this.keyTimer = setTimeout(function() {
+			Session.set("filterCriteria", $("#filter-input").val());
+		}, 1000);
+	},
+
 	getDefaultCardType: function() {
 		return _.keys(Session.get('currentBoardView').filters)[0];
 	},

@@ -1,26 +1,35 @@
 <template name="cardListView">
 
   <div class="ui menu">
-    <!--<div class="ui dropdown item active">
-      <strong>My Open Tasks</strong>
+    <div class="ui dropdown item" style="background:rgb(235, 235, 235)">
+      <div class="text"><strong>My Open Tasks</strong></div>
       <i class="dropdown icon"></i>
       <div class="menu">
         <a class="item">Electronics</a>
         <a class="item">Automotive</a>
         <a class="item">Home</a>
       </div>
-    </div>-->    
+    </div>
     {{> cardTypeDropdown}}
-    {{#each viewFilters}}
-    {{> viewFilterDropdown}}
-    {{/each}}
+    <div class="item" style="display:flex;flex:1">
+     <div class="ui left icon action input">
+      <i class="filter link icon"></i>
+      <input id="filter-input" type="text" placeholder="type here to filter list">
+      <div class="ui button">Search</div>
+    </div>
   </div>
-  <div style="color:lightgray"><strong>{{numCards}}</strong> active | <strong>{{numArchivedCards}}</strong> archived </div>
-  <div class="ui segments" >
-   {{#each cards}}
-   {{> cardItem}}			
-   {{/each}}
- </div>
+
+  <!--
+  {{#each viewFilters}}
+  {{> viewFilterDropdown}}
+  {{/each}}-->
+</div>
+<div style="color:lightgray"><strong>{{numCards}}</strong> active | <strong>{{numArchivedCards}}</strong> archived </div>
+<div class="ui segments" >
+ {{#each cards}}
+ {{> cardItem}}			
+ {{/each}}
+</div>
 </template>
 
 <template name="cardTypeItem">
@@ -34,62 +43,62 @@
       </a>-->
       <div class="item"> 
 
-    <div class="middle aligned content">      
-      <div style="float:left">
-        {{#each leftCardItemWidgets}}
+        <div class="middle aligned content">
+          <div style="float:left">
+            {{#each leftCardItemWidgets}}
             {{> Template.dynamic template=name}}
+            {{/each}}
+          </div>
+          <a id="title-link" class="header {{archivedClass}}" style="margin-left:10px"><i class="icon {{cardIcon}}"></i> {{title}}</a> 
+          <div style="float:right;position:relative;top:-5px">
+
+            {{#each rightCardItemWidgets}}
+            {{> Template.dynamic template=name}}
+            {{/each}}
+            <img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/joe.jpg">
+            <img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/stevie.jpg">
+          </div>         
+        </div>
+      </div>
+    </div>
+  </template>
+
+
+  <template name="cardTypeDropdown">
+    <div class="ui dropdown item"> {{selectedCardType}}
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        {{#each cardTypes}}
+        {{> cardTypeItem}}
         {{/each}}
       </div>
-      <a id="title-link" class="header {{archivedClass}}" style="margin-left:10px"><i class="icon {{cardIcon}}"></i> {{title}}</a> 
-      <div style="float:right;position:relative;top:-5px">
-
-          {{#each rightCardItemWidgets}}
-            {{> Template.dynamic template=name}}
-          {{/each}}
-          <img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/joe.jpg">
-          <img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/stevie.jpg">
-        </div>         
     </div>
-  </div>
-</div>
-</template>
+  </template>
 
-
-<template name="cardTypeDropdown">
-  <div class="ui dropdown item"> {{selectedCardType}}
-    <i class="dropdown icon"></i>
-    <div class="menu">
-      {{#each cardTypes}}
-      {{> cardTypeItem}}
-      {{/each}}
+  <template name="viewFilterDropdown">
+    <div class="ui dropdown item"> {{{selectedFilter}}}
+      <i class="dropdown icon"></i>
+      <div class="menu">
+        <div class="all-filter-item item">All</div>
+        {{#each filterFields}}
+        {{> filterItem}}
+        {{/each}}
+      </div>
     </div>
-  </div>
-</template>
+  </template>
 
-<template name="viewFilterDropdown">
-  <div class="ui dropdown item"> {{{selectedFilter}}}
-    <i class="dropdown icon"></i>
-    <div class="menu">
-      <div class="all-filter-item item">All</div>
-      {{#each filterFields}}
-      {{> filterItem}}
-      {{/each}}
+
+  <template name="filterItem">
+    <div class="item">{{label}}</div>
+  </template>
+
+
+  <template name="visibilityDropdown">
+    <div class="ui dropdown item"> {{selectedVisibility}}
+      <i class="dropdown icon"></i>
+      <div class="menu">              
+        <div id="set-active-filter" class="item">active</div>
+        <div id="set-archived-filter" class="item">archived</div>
+      </div>
     </div>
-  </div>
-</template>
-
-
-<template name="filterItem">
-  <div class="item">{{label}}</div>
-</template>
-
-
-<template name="visibilityDropdown">
-  <div class="ui dropdown item"> {{selectedVisibility}}
-    <i class="dropdown icon"></i>
-    <div class="menu">              
-      <div id="set-active-filter" class="item">active</div>
-      <div id="set-archived-filter" class="item">archived</div>
-    </div>
-  </div>
-</template>
+  </template>
