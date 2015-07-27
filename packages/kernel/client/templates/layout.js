@@ -6,7 +6,7 @@ Template.layout.onRendered(function() {
 Template.layout.helpers({
 	channels: function() {
 		return Channels.find({boardId: Session.get('currentBoardId')});
-	}
+	},	
 });
 
 Template.layout.events({

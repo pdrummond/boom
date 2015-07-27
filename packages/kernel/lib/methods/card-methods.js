@@ -1,12 +1,16 @@
 Meteor.methods({
 	createCard: function(templateName, attrs) {		
 		//TODO: Add checks here
-		attrs = _.extend(attrs, {			
+
+		var user = Meteor.user();
+
+		attrs = _.extend(attrs, {	
+			createdBy: user._id,
 			createdAt: new Date().getTime(),
 			templateName: templateName,
 		});		
 		attrs.cid = Meteor.isServer?incrementCounter(Counters, attrs.boardId):0;
-    	console.log("CID: " + attrs.cid + " (" + attrs.boardId + ")");
+    	//console.log("CID: " + attrs.cid + " (" + attrs.boardId + ")");
 		var cardId = Boom.CardCollections[templateName].insert(attrs);
 
 		var channelId = Channels.insert({

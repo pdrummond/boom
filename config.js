@@ -49,19 +49,19 @@ Boom.config.addCardTemplate("TaskCard", {
 	labelPlural: "Tasks",
 	icon: "fa-ticket",
 	fields: {
-	    title: { type: String, label: "Title"},
-	    content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }},
+		title: { type: String, label: "Title"},
+		content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }},
 		status: { 
 			type: String, 
 			label: "Status", 
 			defaultValue: 'open',
 			values: [
-				{label: 'Open', value: 'open', color: 'olive'},
-				{label: 'In Progress', value: 'in-progress', color: 'teal'},
-				{label: 'Blocked', value: 'blocked', color: 'red'},
-				{label: 'In Test', value: 'in-test', color: 'green'},
-				{label: 'Resolved', value: 'resolved', color: 'blue'},
-				{label: 'Closed', value: 'closed', color: 'black'},
+			{label: 'Open', value: 'open', color: 'olive'},
+			{label: 'In Progress', value: 'in-progress', color: 'teal'},
+			{label: 'Blocked', value: 'blocked', color: 'red'},
+			{label: 'In Test', value: 'in-test', color: 'green'},
+			{label: 'Resolved', value: 'resolved', color: 'blue'},
+			{label: 'Closed', value: 'closed', color: 'black'},
 			]
 		},
 		milestone: { 
@@ -82,20 +82,20 @@ Boom.config.addCardTemplate("BugCard", {
 	icon: "fa-bug",
 	fields: {
 		title: { type: String, label: "Title"},
-	    content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }},
+		content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }},
 		status: { 
 			type: String, 
 			label: "Status", 
 			defaultValue: 'open',
 			values: [
-				{label: 'Open', value: 'open', color: 'olive'},
-				{label: 'In Progress', value: 'in-progress', color: 'teal'},
-				{label: 'Blocked', value: 'blocked', color: 'red'},
-				{label: 'In Test', value: 'in-test', color: 'green'},
-				{label: 'Resolved', value: 'resolved', color: 'blue'},
-				{label: 'Duplicate', value: 'duplicate', color: 'gray'},
-				{label: 'WontFix', value: 'in-test', color: 'gray'},				
-				{label: 'Closed', value: 'closed', color: 'black'},
+			{label: 'Open', value: 'open', color: 'olive'},
+			{label: 'In Progress', value: 'in-progress', color: 'teal'},
+			{label: 'Blocked', value: 'blocked', color: 'red'},
+			{label: 'In Test', value: 'in-test', color: 'green'},
+			{label: 'Resolved', value: 'resolved', color: 'blue'},
+			{label: 'Duplicate', value: 'duplicate', color: 'gray'},
+			{label: 'WontFix', value: 'in-test', color: 'gray'},				
+			{label: 'Closed', value: 'closed', color: 'black'},
 			]
 		},
 		milestone: { 
@@ -121,9 +121,9 @@ Boom.config.addCardTemplate("StoryCard", {
 			label: "Type",
 			defaultValue: 'general',
 			values: [
-				{label: 'General',    	value: 'general',	 icon: 'fa-tasks'},
-				{label: 'Functional',     value: 'functional', 	 icon: 'fa-bug'},
-				{label: 'Non Functional', value: 'non-functional', icon: 'fa-bolt'}
+			{label: 'General',    	value: 'general',	 icon: 'fa-tasks'},
+			{label: 'Functional',     value: 'functional', 	 icon: 'fa-bug'},
+			{label: 'Non Functional', value: 'non-functional', icon: 'fa-bolt'}
 			]			
 		}		
 	},
@@ -152,7 +152,7 @@ Boom.config.addCardTemplate("DiscussionCard", {
 });
 
 Boom.CardListView = { //FIXME: This doesn't make sense here - it needs to come from the view config for the board.
-	cardTemplate: "TaskCard"
+cardTemplate: "TaskCard"
 };
 
 /*Boom.config.addCardType("taskCard", 
@@ -212,3 +212,25 @@ Boom.config.addWorkflow("task-workflow", {
 		}]
 	}]
 });*/
+
+AccountsTemplates.configureRoute('signIn');
+var pwd = AccountsTemplates.removeField('password');
+AccountsTemplates.removeField('email');
+AccountsTemplates.addFields([
+  {
+      _id: "username",
+      type: "text",
+      displayName: "username",
+      required: true,
+      minLength: 5,
+  },
+  {
+      _id: 'email',
+      type: 'email',
+      required: true,
+      displayName: "email",
+      re: /.+@(.+){2,}\.(.+){2,}/,
+      errStr: 'Invalid email',
+  },
+  pwd
+]);

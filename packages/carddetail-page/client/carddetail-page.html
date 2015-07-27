@@ -64,10 +64,10 @@
 <template name="commentMessage">
   <div class="comment">
     <div class="avatar">
-      <img src="http://semantic-ui.com/images/avatar/small/joe.jpg">
+      <img src="{{userImageUrl this.createdByEmail}}">
     </div>
     <div class="content">      
-      <a class="author">Paul Drummond</a>
+      <a class="author">{{createdBy}}</a>
       <div class="metadata">
         <span class="date">
           {{formatTime createdAt}}

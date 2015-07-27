@@ -7,6 +7,7 @@ Template.editCardPage.helpers({
 AutoForm.hooks({
 	editCardForm: {
 		onSubmit: function (insertDoc, updateDoc, currentDoc) {
+			console.log("editCardForm.onSubmit");
 			var self = this;				
 			Meteor.call("updateCard", currentDoc._id, Session.get("currentCardTemplate"), updateDoc, function(error, result) {
 				if(error) {
@@ -19,6 +20,7 @@ AutoForm.hooks({
 		},
 
 		onSuccess: function() {			
+			console.log("editCardForm.onSuccess");
 			Boom.Router.showCurrentBoardPage();
 		}
 	}

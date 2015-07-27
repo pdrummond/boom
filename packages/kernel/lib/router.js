@@ -1,13 +1,13 @@
 Router.configure({
   layoutTemplate: 'layout',
   loadingTemplate: 'loading',  
-  notFoundTemplate: 'notFound',
+  notFoundTemplate: 'notFound'  
 });
 
 Router.route('/board/create/:boardTemplate', function() {
     Session.set("currentBoardTemplate", this.params.boardTemplate);
     this.render("createBoardPage");
-});
+}, {name:'createBoardPage'});
 
 Router.route('/board/:boardTemplate/:boardId/:boardViewId', function() {
   var boardTemplate = this.params.boardTemplate;
@@ -20,7 +20,7 @@ Router.route('/board/:boardTemplate/:boardId/:boardViewId', function() {
   Session.set("currentChannelId", board.channelId);
   Session.set("currentChannel", Channels.findOne(board.channelId));
   this.render("boardPage");
-});
+}, {name:'boardPage'});
 
 Router.route('/board/:boardTemplate/:boardId/channel/:channelId', function() {
   var boardViewId = "boardroom";
@@ -51,12 +51,12 @@ Router.route('/board/:boardTemplate/:boardId/card/:cardTemplate/:cardId/detail/'
 
 
     this.render("cardDetailPage");
-});
+}, {name:'cardDetailPage'});
 
 Router.route('/cards/:cardTemplate/create', function() {
     Session.set("currentCardTemplate", this.params.cardTemplate);
     this.render("createCardPage");
-});
+}, {name:'createCardPage'});
 
 Router.route('/cards/:cardTemplate/edit/:cardId', function() {
     Session.set("currentCardTemplate", this.params.cardTemplate);
@@ -66,7 +66,7 @@ Router.route('/cards/:cardTemplate/edit/:cardId', function() {
     Session.set("currentCardId", this.params.cardId);
     Session.set("currentCard", card);
     this.render("editCardPage");
-});
+}, {name:'editCardPage'});
 
 RouteHelpers = {
   getBoardView: function(boardViewId) {
@@ -76,6 +76,18 @@ RouteHelpers = {
   }
 }
 
+var requireLogin = function() {
+  if (! Meteor.user()) {
+    if (Meteor.loggingIn()) {
+      this.render(this.loadingTemplate);
+    } else {
+      this.render('accessDenied');
+    }
+  } else {
+    this.next();
+  }
+}
 
+Router.route("/", 'boardListPage', {name:'boardListPage'});
 
-Router.route("/", 'boardListPage');
+Router.onBeforeAction(requireLogin, {only: ['boardListPage', 'boardPage', 'cardDetailPage', 'createCardPage', 'editCardPage', 'createBoardPage', 'editBoardPage']});
