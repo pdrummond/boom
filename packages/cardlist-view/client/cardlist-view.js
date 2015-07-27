@@ -22,12 +22,13 @@ Template.cardListView.helpers({
 		}
 		if(remainingText && remainingText.length > 0) {
 			filter["$or"] = [{title: {$regex:remainingText}}, {content: {$regex:remainingText}}];
-		}
+		}	
 		var cardType = CardListHelpers.getDefaultCardType();
 		var cardTypeFilter = Session.get('cardTypeFilter');
 		if(cardTypeFilter) {
 			cardType = cardTypeFilter.value;
 		}
+		filter.boardId = Session.get('currentBoardId');
 		return Boom.CardCollections[cardType].find(filter, {sort: {updatedAt: -1}});
 	},
 
