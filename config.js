@@ -125,8 +125,9 @@ Boom.config.addCardTemplate("StoryCard", {
 				{label: 'Functional',     value: 'functional', 	 icon: 'fa-bug'},
 				{label: 'Non Functional', value: 'non-functional', icon: 'fa-bolt'}
 			]			
-		},
-	}
+		}		
+	},
+	rightWidgets: [{name: 'storyTasksWidget'}],
 });
 
 Boom.config.addCardTemplate("ArticleCard", {

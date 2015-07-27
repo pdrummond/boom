@@ -25,6 +25,7 @@ boom:editcard-page@0.0.1
 boom:fieldgrid-widget@0.0.1
 boom:kanban-view@0.0.1
 boom:kernel@0.0.1
+boom:storytasks-widget@0.0.1
 callback-hook@1.0.3
 check@1.0.5
 coffeescript@1.0.6

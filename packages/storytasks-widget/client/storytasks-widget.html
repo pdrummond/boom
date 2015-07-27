@@ -1,0 +1,13 @@
+<template name="storyTasksWidget">
+	<span class="ui labels">
+		{{#each cardRefs}}
+		{{> cardRef}}
+		{{/each}}
+	</span>
+</template>
+
+<template name="cardRef">
+	<a class="ui label {{color}}">		
+		<div class="label">#{{cardPrefix}}-{{cid}}</div>
+	</a>
+</template>

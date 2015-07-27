@@ -46,9 +46,13 @@ Boom.config = {
       createdAt: Boom.SchemaHelpers.createdAt,
       updatedAt: Boom.SchemaHelpers.updatedAt,
       archived: {type: Boolean, label: "Archived"},
-      labels: {type: Array,optional: true, minCount: 0, maxCount: 5},
+      labels: {type: Array, optional: true, minCount: 0, maxCount: 5},
       "labels.$": { type: Object, optional:true},
       "labels.$.name": {type: String, optional:true},
+      refs: {type: Array, optional: true, minCount: 0, maxCount: 5},
+      "refs.$": { type: Object, optional:true},
+      "refs.$.cardId": {type: String, optional:true},
+      "refs.$.cardType": {type: String, optional:true}
     });
     
     //console.log("attrs.schema = " + JSON.stringify(attrs.schema, null, 4));
