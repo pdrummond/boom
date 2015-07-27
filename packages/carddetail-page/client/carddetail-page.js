@@ -6,14 +6,14 @@ Template.cardDetailPage.helpers({
 });
 
 Template.cardDetailPage.events({
-	'click #edit-card-button': function() {
+	'click #edit-card-menu-item': function() {
 		Boom.Router.showEditCardPage(this);
 	},
 
-	"keydown #create-comment-input": function(ev) {
+	"keydown #comment-box-input": function(ev) {
 		if(ev.keyCode == 13 && ev.shiftKey == false) {
 			ev.preventDefault();
-			var content = $('#create-comment-input').val();
+			var content = $('#comment-box-input').val();
 			if(content.length > 0) {
 				var message = {
 					content: content,
@@ -24,7 +24,7 @@ Template.cardDetailPage.events({
 						return alert(error.reason);
 					} else {
 						window.scrollTo(0,document.body.scrollHeight);
-						$('#create-comment-input').val("");
+						$('#comment-box-input').val("");
 					}
 				});
 			}
@@ -33,10 +33,5 @@ Template.cardDetailPage.events({
 });
 
 Template.cardDetailPage.onRendered(function() {
-	var self = this;
-	setTimeout(function() {
-		self.$('.ui.accordion').accordion({
-			exclusive: false
-		});		
-	}, 100);
+	this.$('.ui.dropdown').dropdown();		
 });

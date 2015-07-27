@@ -141,6 +141,16 @@ Boom.config.addCardTemplate("ArticleCard", {
 	}
 });
 
+Boom.config.addCardTemplate("DiscussionCard", {
+	label: "Discussion",
+	labelPlural: "Discussions",
+	icon: "fa-comments-o",
+	fields: {
+		title: { type: String, label: "Topic"},		
+		content: {type: String, label: "Content", optional:true}
+	}
+});
+
 Boom.CardListView = { //FIXME: This doesn't make sense here - it needs to come from the view config for the board.
 	cardTemplate: "TaskCard"
 };

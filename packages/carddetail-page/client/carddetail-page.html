@@ -1,89 +1,81 @@
 <template name="cardDetailPage">
-	{{#with currentCard}}
-  <div class="ui text container">
-    <div class="ui vertically divided grid">
-      <div class="two column row">
-        <div class="column">
-          <h1 class="ui header">{{title}}</h1>    
-        </div>
-        <div class="column right aligned">
-          <button id="edit-card-button" class="positive ui button"><i class="fa fa-edit"></i> Edit Card</button>
-        </div>
+	{{#with currentCard}}  
+  <!--<div class="ui secondary pointing menu">
+    <a class="item active">
+      Content
+    </a>
+    <a class="item">
+      Comments
+    </a>
+    <a class="item">
+      Activity
+    </a>  
+  </div>-->
+
+  <div style="border-bottom:1px solid lightgray;padding-bottom:50px">
+    <div class="ui borderless main menu" style="border:noneborder-radius: 0;border: none;box-shadow: none;transition: box-shadow 0.5s ease, padding 0.5s ease;">
+      <div class="ui container">
+        <div href="#" class="header item" style="font-size:1.5em;padding-left:0">
+          <i class="fa fa-bug fa-2x" style=";margin-right:0.5em"></i>
+          {{title}}
+        </div>      
+        <a href="#" class="ui right floated dropdown item" tabindex="0">
+          <i class="ellipsis vertical icon"></i>
+          <div class="menu transition hidden" tabindex="-1">
+            <div id="edit-card-menu-item" class="item">Edit</div>
+            <div class="item">Link Item</div>
+            <div class="divider"></div>
+            <div class="header">Header Item</div>            
+            <div class="item">Link Item</div>
+          </div>
+        </a>
       </div>
     </div>
-  </div>
-  <div class="ui text container">
-    <div class="ui equal width center aligned padded grid" style="margin-top:10px !important;margin-bottom:10px !important">
-      <div class="row" >
-        <div class="black column">Status: <strong>OPEN</strong></div>
-      </div>
-      <div class="row">
-        <div class="olive column">
-          <div class="ui mini statistic">
-            <div class="value">
-              <i class="thumbs up icon"></i> 10
-            </div>
-            <div class="label">
-              Votes
-            </div>
-          </div>
-        </div>
-        <div class="blue column">
-          <div class="ui mini statistic">
-            <div class="value">
-              <i class="comment icon"></i> 500
-            </div>
-            <div class="label">
-              Comments
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>  	
 
-    <div class="ui fluid accordion">
-     <div class="active title">
-       <h3><i class="dropdown icon"></i> Content</h3>
-     </div>
-     <div class="active content">
+    <div class="ui container" style="font-size:1.2em">
       {{#markdown}}{{content}}{{/markdown}}    
-    </div>    
-
-    <div class="active title">
-    	<h3><i class="dropdown icon"></i> Comments/Activity</h3>
     </div>
-    <div id="comments-container" class="active content">
-      <div class="ui feed">
+  </div>
+
+  <div id="comments-container" class="ui container" style="margin-top:30px">
+    <h3 style="margin-left:10px;color:gray">Comments</h3>
+    <div class="ui comments" style="padding-bottom:150px">    
       {{#each cardMessages}}
-        {{> commentMessage}}
-      {{/each}}
-      <form class="ui reply form">
-        <div class="field">
-          <textarea id="create-comment-input" placeholder="Add Comment"></textarea>
-        </div>    
-      </form>
+      {{> commentMessage}}
+      {{/each}}      
+    </div>
+  </div>
+  
+  <div class='ui grid' style="position:fixed;bottom:10px;left:10px;width:98%;padding:10px;background:white">
+    <div class='row'>
+      <div class="center aligned one wide column">
+        <i class="icon grey comment huge" style="pull-left"></i>
+      </div>
+      <div class="fifteen wide column">
+        <textarea id="comment-box-input" placeholder="Add comment here" style="width:100%;height:100%;padding:10px;background:whitesmoke;border:2px solid gray;resize:none;box-shadow: 0px 0px 2px gray"></textarea>
       </div>
     </div>
   </div>
-</div>
-{{/with}}
+
+
+  {{/with}}
 </template>
 
 <template name="commentMessage">
-  <div class="event">
-    <div class="label">
+  <div class="comment">
+    <div class="avatar">
       <img src="http://semantic-ui.com/images/avatar/small/joe.jpg">
     </div>
-    <div class="content">
-      <div class="summary">
-        <a>Paul Drummond</a>
-        <div class="date">
+    <div class="content">      
+      <a class="author">Paul Drummond</a>
+      <div class="metadata">
+        <span class="date">
           {{formatTime createdAt}}
-        </div>
-      </div>
-      <div class="extra text">
-        {{content}}
+        </span>
       </div>      
+      <div class="text">
+        {{content}}
+      </div>
     </div>
   </div>
 </template>
