@@ -115,7 +115,7 @@ Boom.config.addCardTemplate("StoryCard", {
 	icon: "fa-book",
 	fields: {
 		title: { type: String, label: "Title"},		
-		description: {type: String, label: "Description"},
+		description: {type: String, label: "Description", optional:true},
 		type: { 
 			type: String, 
 			label: "Type",
@@ -136,8 +136,8 @@ Boom.config.addCardTemplate("ArticleCard", {
 	icon: "fa-newspaper-o",
 	fields: {
 		title: { type: String, label: "Title"},
-		author: { type: String, label: "Author"},
-		content: {type: String, label: "Content"}
+		author: { type: String, label: "Author", optional:true},
+		content: {type: String, label: "Content", optional:true}
 	}
 });
 

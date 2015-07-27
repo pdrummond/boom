@@ -78,12 +78,49 @@ Template.cardListView.helpers({
 
 	filters: function() {
 		return Filters.find();
+	},
+
+	createBoxIcon: function() {
+		var cardType = CardListHelpers.getDefaultCardType();
+		var cardTypeFilter = Session.get('cardTypeFilter');
+		if(cardTypeFilter) {
+			cardType = cardTypeFilter.value;
+		}
+		return Boom.CardTemplates[cardType].icon;
 	}
 });
 
 Template.cardListView.events({
 	'keyup #filter-input': function(ev) {
 		CardListHelpers.onFilterInput(ev);
+	},
+
+
+	"keydown #create-box-input": function(ev) {
+		if(ev.keyCode == 13 && ev.shiftKey == false) {
+			ev.preventDefault();
+			var input = $('#create-box-input').val();
+			if(input.length > 0) {
+				var cardType = CardListHelpers.getDefaultCardType();
+				var cardTypeFilter = Session.get('cardTypeFilter');
+				if(cardTypeFilter) {
+					cardType = cardTypeFilter.value;
+				}		
+				var card = {
+					title: input,				
+					boardId: Session.get('currentBoardId'),	
+				};
+				Boom.CardCollections[cardType].simpleSchema().clean(card);				
+				Meteor.call('createCard', cardType, card, function(error, result) {
+					if (error) {
+						return alert(error.reason);
+					} else {
+						window.scrollTo(0,document.body.scrollHeight);
+						$('#create-box-input').val("");
+					}
+				});
+			}
+		}
 	},
 
 	'click #save-filter': function() {

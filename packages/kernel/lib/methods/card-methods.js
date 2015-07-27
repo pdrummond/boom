@@ -5,7 +5,7 @@ Meteor.methods({
 			createdAt: new Date().getTime(),
 			templateName: templateName,
 		});		
-		attrs.cid = incrementCounter(Counters, attrs.boardId);
+		attrs.cid = Meteor.isServer?incrementCounter(Counters, attrs.boardId):0;
     	console.log("CID: " + attrs.cid + " (" + attrs.boardId + ")");
 		var cardId = Boom.CardCollections[templateName].insert(attrs);
 
