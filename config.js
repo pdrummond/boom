@@ -16,12 +16,7 @@ Boom.config.addBoardTemplate("SoftwareBoard", {
 	}, {
 		_id: "cards",
 		title: "Cards",
-		type: "cardListView",
-		filters: {
-			'IssueCard': ['type', 'status', 'milestone'],
-			'StoryCard': ['type'],
-			'ArticleCard': ['type']			
-		}
+		type: "cardListView",		
 	}, {
 		_id: "roadmap",
 		title: "Roadmap",
@@ -32,7 +27,7 @@ Boom.config.addBoardTemplate("SoftwareBoard", {
 		_id: "articles",
 		title: "Articles",
 		type: "cardListView",
-		cardType: "IssueCard"
+		cardType: "TaskCard"
 	}]
 });	
 
@@ -45,26 +40,17 @@ Boom.config.addBoardTemplate("SimpleBoard", {
 	views: [{
 		title: "Board",
 		type: "kanbanView",
-		cardType: "IssueCard",
+		cardType: "TaskCard",
 	}]
 });	
 
-Boom.config.addCardTemplate("IssueCard", {
-	label: "Issue",
-	labelPlural: "Issues",
+Boom.config.addCardTemplate("TaskCard", {
+	label: "Task",
+	labelPlural: "Tasks",
 	icon: "fa-ticket",
 	fields: {
-		title: { type: String, label: "Title"},
-		type: { 
-			type: String, 
-			label: "Type",
-			defaultValue: 'task',
-			values: [
-				{label: 'Task',    value: 'task',	 icon: 'fa-tasks'},
-				{label: 'Bug',     value: 'bug', 	 icon: 'fa-bug'},
-				{label: 'Feature', value: 'feature', icon: 'fa-bolt'}
-			]			
-		},
+	    title: { type: String, label: "Title"},
+	    content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }},
 		status: { 
 			type: String, 
 			label: "Status", 
@@ -83,24 +69,44 @@ Boom.config.addCardTemplate("IssueCard", {
 			label: "Milestone", 
 			optional: true,
 			valuesFromCollection: Milestones,
-		},		
-		archived: {type: Boolean, label: "Archived"},
-		content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }}
+		},
+
 	},
 	rightWidgets: [{name: 'cardLabelsWidget'}],
-	leftWidgets: [{name: 'cardStatusWidget'}],	
-	
-	miniFieldGrid: {
-		topField: {field: 'status'},
-		bottomFields: [{label: "type", field: 'type', icon: function(ctx) {
-			switch(ctx.value) {
-				case 'task': return 'fa-tasks';
-				case 'bug': return 'fa-bug';
-				case 'feature': return 'fa-bolt';
-				default: return 'fa-square';
-			}
-		}}, {label: 'Milestone', field: 'milestone'}]
-	}	
+	leftWidgets: [{name: 'cardStatusWidget'}]		
+});
+
+Boom.config.addCardTemplate("BugCard", {
+	label: "Bug",
+	labelPlural: "Bugs",
+	icon: "fa-bug",
+	fields: {
+		title: { type: String, label: "Title"},
+	    content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }},
+		status: { 
+			type: String, 
+			label: "Status", 
+			defaultValue: 'open',
+			values: [
+				{label: 'Open', value: 'open', color: 'olive'},
+				{label: 'In Progress', value: 'in-progress', color: 'teal'},
+				{label: 'Blocked', value: 'blocked', color: 'red'},
+				{label: 'In Test', value: 'in-test', color: 'green'},
+				{label: 'Resolved', value: 'resolved', color: 'blue'},
+				{label: 'Duplicate', value: 'duplicate', color: 'gray'},
+				{label: 'WontFix', value: 'in-test', color: 'gray'},				
+				{label: 'Closed', value: 'closed', color: 'black'},
+			]
+		},
+		milestone: { 
+			type: String, 
+			label: "Milestone", 
+			optional: true,
+			valuesFromCollection: Milestones,
+		}		
+	},
+	rightWidgets: [{name: 'cardLabelsWidget'}],
+	leftWidgets: [{name: 'cardStatusWidget'}]		
 });
 
 Boom.config.addCardTemplate("StoryCard", {

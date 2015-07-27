@@ -167,7 +167,7 @@ Template.cardTypeDropdown.helpers({
 	},
 
 	cardTypes: function() {	
-		var cardTemplates = _.keys(Session.get('currentBoardView').filters);
+		var cardTemplates = _.keys(Boom.CardTemplates);
 		var result = _.map(cardTemplates, function(cardTemplate) {
 			var label = 'Unknown';
 			var t = Boom.CardTemplates[cardTemplate];
@@ -290,7 +290,7 @@ CardListHelpers = {
 	},
 
 	getDefaultCardType: function() {
-		return _.keys(Session.get('currentBoardView').filters)[0];
+		return _.keys(Boom.CardTemplates)[0];
 	},
 
 	cardItemWidgets: function(card, widgetMeta) {
