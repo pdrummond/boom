@@ -143,7 +143,12 @@ Template.cardItem.helpers({
 
 	rightCardItemWidgets: function() {
 		return CardListHelpers.cardItemWidgets(this, "rightWidgets");
+	},
+
+	cardPrefix: function() {
+		return Session.get('currentBoard').cardPrefix;
 	}
+
 });
 
 Template.cardItem.events({

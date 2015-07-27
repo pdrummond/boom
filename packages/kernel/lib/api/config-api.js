@@ -39,6 +39,7 @@ Boom.config = {
     });
 
     attrs.schema = _.extend(attrs.schema, {
+      cid: {type: Number, optional:true, autoform: {omit:true}},
       templateName: {type: String, optional:true, autoform: {omit:true}},      
       boardId: {type: String, optional:true, autoform: {omit:true}},
       channelId: {type: String, optional:true, autoform: {omit:true}},
@@ -62,6 +63,7 @@ Boom.config = {
 
   addBoardTemplate: function(templateName, attrs) {
     attrs.fields = _.extend(attrs.fields, {
+      cardPrefix: {type: String},
       templateName: {type: String, optional: true, autoform: {omit:true}},
       channelId: {type: String, optional: true, autoform: {omit:true}},
       createdAt: {type: Number, optional: true, autoform: {omit:true}}

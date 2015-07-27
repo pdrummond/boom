@@ -5,7 +5,7 @@ Meteor.methods({
 		var now = new Date().getTime();
 		attrs = _.extend(attrs, {			
 			templateName: templateName,
-			createdAt: now			
+			createdAt: now,			
 		});
 		console.log("createBoard: templateName = " + templateName);
 		var boardId = Boom.BoardCollections[templateName].insert(attrs);

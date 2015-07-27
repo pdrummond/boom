@@ -49,7 +49,9 @@
             {{> Template.dynamic template=name}}
             {{/each}}
           </div>
-          <a id="title-link" class="header {{archivedClass}}" style="margin-left:10px"><i class="icon {{cardIcon}}"></i> {{title}}</a> 
+          <span style="margin-left:10px">
+          <a id="title-link" class="header {{archivedClass}}"><i class="icon {{cardIcon}}"></i> #{{cardPrefix}}-{{cid}}</a>  {{title}} 
+          </span>
           <div style="float:right;position:relative;top:-5px">
 
             {{#each rightCardItemWidgets}}

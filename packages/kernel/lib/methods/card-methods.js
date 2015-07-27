@@ -5,13 +5,15 @@ Meteor.methods({
 			createdAt: new Date().getTime(),
 			templateName: templateName,
 		});		
+		attrs.cid = incrementCounter(Counters, attrs.boardId);
+    	console.log("CID: " + attrs.cid + " (" + attrs.boardId + ")");
 		var cardId = Boom.CardCollections[templateName].insert(attrs);
 
 		var channelId = Channels.insert({
     		title: attrs.title,
     		channelType: 'card',
     		boardId: attrs.boardId,
-    		cardId: cardId
+    		cardId: cardId,    		
   		});
   		Boom.CardCollections[templateName].update(cardId, {$set: {channelId: channelId}});
 

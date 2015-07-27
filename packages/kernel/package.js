@@ -7,7 +7,7 @@ Package.describe({
 Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
   api.use(['meteor-platform', 'iron:router', 'momentjs:moment', 'semantic:ui', 
-    'fabienb4:autoform-semantic-ui', 'stevezhu:lodash']);
+    'fabienb4:autoform-semantic-ui', 'stevezhu:lodash', 'konecty:mongo-counter']);
   api.addFiles([
     'kernel.js',    
     'lib/router.js', 
@@ -22,6 +22,7 @@ Package.onUse(function(api) {
     'lib/collections/message-collection.js',
     'lib/collections/milestone-collection.js',
     'lib/collections/filter-collection.js',
+    'lib/collections/counter-collection.js',
     ]);
 
   api.addFiles([    
@@ -38,7 +39,8 @@ Package.onUse(function(api) {
 
   api.addFiles('server/fixtures.js');
 
-  api.export(['lodash', 'Boom', 'Boards', 'Cards', 'Channels', 'Messages', 'Milestones', 'Filters', 'BoardTemplates', 'formatTime']);
+  api.export(['lodash', 'Boom', 'Boards', 'Cards', 'Channels', 'Messages', 
+    'Milestones', 'Filters', 'Counters', 'BoardTemplates', 'formatTime']);
 
 });
 
