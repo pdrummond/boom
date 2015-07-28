@@ -29,9 +29,11 @@ Boom.config = {
           afField.defaultValue = defaultItem._id;
         }
         afField.autoform = {
-          options: collection.find().map(function(item) { 
-            return {label:item.title, value:item._id};
-          })
+          options: function() {
+            return collection.find().map(function(item) { 
+              return {label:item.title, value:item._id};
+            });
+          }
         };
       } else if(field.valuesFromCard) {
         var collection = Boom.CardCollections[field.valuesFromCard.cardType];
@@ -43,8 +45,7 @@ Boom.config = {
           afField.defaultValue = defaultItem._id;
         }
         afField.autoform = {
-          options: function() {
-            console.log("valuesFromCard: getting options for milestone");
+          options: function() {            
             return collection.find().map(function(item) { 
               return {label:item.title, value:item._id};
             });
