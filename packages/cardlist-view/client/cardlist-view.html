@@ -1,7 +1,7 @@
 <template name="cardListView">
 
-<h2>
-<div class="ui inline dropdown">
+  <h2>
+    <div class="ui inline dropdown">
       <div class="text"><strong>{{filterTitle}}</strong></div>
       <i class="dropdown icon"></i>
       <div class="menu">
@@ -13,37 +13,39 @@
         {{/each}}
       </div>
     </div>
-  <div class="ui menu">    
-    {{> cardTypeDropdown}}
-    <div class="item" style="display:flex;flex:1">
-     <div class="ui left icon action input">
-      <i class="filter link icon"></i>
-      <input id="filter-input" type="text" placeholder="type here to filter list" value="{{filterCriteria}}">
-      <div id="save-filter" class="ui button"><i class='save icon'></i> Save Filter</div>              
+    <div class="ui menu">    
+      {{> cardTypeDropdown}}
+      <div class="item" style="display:flex;flex:1">
+       <div class="ui left icon action input">
+        <i class="filter link icon"></i>
+        <input id="filter-input" type="text" placeholder="type here to filter list" value="{{filterCriteria}}">
+        <div id="save-filter" class="ui button"><i class='save icon'></i> Save Filter</div>              
+      </div>
     </div>
   </div>
-</div>
 </h2>
-<div style="color:lightgray">Showing {{numFilteredCards}} of {{numCards}} {{selectedCardType}}</div>
+<div style="color:lightgray">Showing {{numFilteredCards}} of {{numCards}} {{selectedCardTypePlural}}</div>
 <div class="ui segments" >
  {{#each cards}}
  {{> cardItem}}			
  {{/each}}
 </div>
-<div class='ui grid' style="position:fixed;bottom:10px;left:10px;width:98%;padding:10px;background:white">
+<div class='ui grid' style="position:fixed;bottom:5px;left;5px;width:100%;background:whitesmoke;padding:20px;border-top:1px solid gray">
   <div class='row'>
-    <div class="center aligned one wide column">
-      <i class="icon grey {{createBoxIcon}} huge" style="pull-left"></i>
-      </div>
-    <div class="fifteen wide column">
-    <textarea id="create-box-input" placeholder="Type here to add new content" style="width:100%;height:100%;padding:10px;background:whitesmoke;border:2px solid gray;resize:none;box-shadow: 0px 0px 2px gray"></textarea>
-  </div>
+    <div class="column">
+      <div class="ui fluid left corner labeled input">
+        <input id="create-box-input" type="text" placeholder="Type here to add a {{selectedCardType}}">
+        <div class="ui left corner label">
+        <i class="{{createBoxIcon}} icon"></i>          
+        </div>        
+      </div>    
+    </div>
   </div>
 </div>
 </template>
 
 <template name="cardTypeItem">
-  <div class="item">{{label}}</div>
+  <div class="item">{{labelPlural}}</div>
 </template>
 
 <template name="cardItem">
@@ -60,15 +62,15 @@
             {{/each}}
           </div>
           <span style="margin-left:10px">
-          <a id="title-link" class="header {{archivedClass}}"><i class="icon {{cardIcon}}"></i> #{{cardPrefix}}-{{cid}}</a>  {{title}} 
+            <a id="title-link" class="header {{archivedClass}}"><i class="icon {{cardIcon}}"></i> #{{cardPrefix}}-{{cid}}</a>  {{title}} 
           </span>
           <div style="float:right;position:relative;top:-5px">
 
             {{#each rightCardItemWidgets}}
             {{> Template.dynamic template=name}}
             {{/each}}
-            <img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/joe.jpg">
-            <img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/stevie.jpg">
+            <!--<img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/joe.jpg">
+            <img class="ui avatar image" src="http://semantic-ui.com/images/avatar/small/stevie.jpg">-->
           </div>         
         </div>
       </div>

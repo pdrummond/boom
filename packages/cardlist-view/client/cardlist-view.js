@@ -68,8 +68,17 @@ Template.cardListView.helpers({
 		return result;
 	},
 
-	selectedCardType: function() {		
+	selectedCardTypePlural: function() {		
 		var label = Boom.CardTemplates[CardListHelpers.getDefaultCardType()].labelPlural;
+		var cardTypeFilter = Session.get('cardTypeFilter');
+		if(cardTypeFilter) {
+			label = cardTypeFilter.labelPlural;
+		}		
+		return label.toLowerCase();
+	},
+
+	selectedCardType: function() {
+		var label = Boom.CardTemplates[CardListHelpers.getDefaultCardType()].label;
 		var cardTypeFilter = Session.get('cardTypeFilter');
 		if(cardTypeFilter) {
 			label = cardTypeFilter.label;
@@ -206,7 +215,7 @@ Template.cardTypeDropdown.helpers({
 		var label = Boom.CardTemplates[CardListHelpers.getDefaultCardType()].labelPlural;
 		var cardTypeFilter = Session.get('cardTypeFilter');
 		if(cardTypeFilter) {
-			label = cardTypeFilter.label;
+			label = cardTypeFilter.labelPlural;
 		}		
 		return label;
 	},
@@ -217,10 +226,12 @@ Template.cardTypeDropdown.helpers({
 			var label = 'Unknown';
 			var t = Boom.CardTemplates[cardTemplate];
 			if(t) {
-				label = t.labelPlural;
+				label = t.label;
+				labelPlural = t.labelPlural;
 			}
 			return {
 				label: label,
+				labelPlural: labelPlural,
 				value: cardTemplate
 			}
 		});
