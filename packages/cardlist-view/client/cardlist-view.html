@@ -13,7 +13,7 @@
         {{/each}}
       </div>
     </div>
-    <div class="ui menu">    
+    <div class="ui menu sticky">    
       {{> cardTypeDropdown}}
       <div class="item" style="display:flex;flex:1">
        <div class="ui left icon action input">
@@ -25,10 +25,12 @@
   </div>
 </h2>
 <div style="color:lightgray">Showing {{numFilteredCards}} of {{numCards}} {{selectedCardTypePlural}}</div>
-<div class="ui segments" >
- {{#each cards}}
- {{> cardItem}}			
- {{/each}}
+<div  style="padding-bottom:120px">
+  <div id="card-list" class="ui segments">
+   {{#each cards}}
+   {{> cardItem}}			
+   {{/each}}
+ </div>
 </div>
 <div class='ui grid' style="position:fixed;bottom:5px;left;5px;width:100%;background:whitesmoke;padding:20px;border-top:1px solid gray">
   <div class='row'>
@@ -36,7 +38,7 @@
       <div class="ui fluid left corner labeled input">
         <input id="create-box-input" type="text" placeholder="Type here to add a {{selectedCardType}}">
         <div class="ui left corner label">
-        <i class="{{createBoxIcon}} icon"></i>          
+          <i class="{{createBoxIcon}} icon"></i>          
         </div>        
       </div>    
     </div>

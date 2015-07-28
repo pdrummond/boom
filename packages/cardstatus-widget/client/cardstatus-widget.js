@@ -5,5 +5,6 @@ Template.cardStatusWidget.helpers({
 
 	status: function() {
 		return Boom.Card.getFieldValueMeta(this.card, 'status', this.card.status).label;
+
 	}
 });

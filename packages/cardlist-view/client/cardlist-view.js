@@ -208,6 +208,7 @@ Template.cardItem.events({
 
 Template.cardListView.onRendered(function() {
 	this.$('.ui.dropdown').dropdown();
+	$('.ui.sticky').sticky({context: '#view-wrapper'});
 });
 
 Template.cardTypeDropdown.helpers({	
