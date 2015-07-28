@@ -32,7 +32,24 @@ Boom.config = {
           options: collection.find().map(function(item) { 
             return {label:item.title, value:item._id};
           })
-        };        
+        };
+      } else if(field.valuesFromCard) {
+        var collection = Boom.CardCollections[field.valuesFromCard.cardType];
+        if(collection == null) {
+          throw new Meteor.Error("invalid-collection", "Cannot find collection for '" + field.valuesFromCard.cardType + "'");
+        }
+        var defaultItem = collection.findOne({default: true});        
+        if(defaultItem) {
+          afField.defaultValue = defaultItem._id;
+        }
+        afField.autoform = {
+          options: function() {
+            console.log("valuesFromCard: getting options for milestone");
+            return collection.find().map(function(item) { 
+              return {label:item.title, value:item._id};
+            });
+          }
+        };
       }
       return afField;
 

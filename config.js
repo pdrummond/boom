@@ -44,6 +44,17 @@ Boom.config.addBoardTemplate("SimpleBoard", {
 	}]
 });	
 
+Boom.config.addCardTemplate("MilestoneCard", {
+	label: "Milestone",
+	labelPlural: "Milestones",
+	icon: "fa-flag",
+	fields: {
+		title: { type: String, label: "Name"},		
+		content: {type: String, label: "Description", optional:true},
+		default: {type: Boolean, label: "Default Milestone", optional:true, defaultValue:false}
+	}
+});
+
 Boom.config.addCardTemplate("TaskCard", {
 	label: "Task",
 	labelPlural: "Tasks",
@@ -68,9 +79,43 @@ Boom.config.addCardTemplate("TaskCard", {
 			type: String, 
 			label: "Milestone", 
 			optional: true,
-			valuesFromCollection: Milestones,
+			valuesFromCard: {cardType: "MilestoneCard"},
 		},
 
+	},
+	rightWidgets: [{name: 'cardLabelsWidget'}],
+	leftWidgets: [{name: 'cardStatusWidget'}]		
+});
+
+
+Boom.config.addCardTemplate("TodoCard", {
+	label: "Todo",
+	labelPlural: "Todos",
+	icon: "fa-square",
+	fields: {
+		title: { type: String, label: "Title"},
+		content: {type: String, label: "Content", optional:true, max: 2000, autoform: { rows: 10 }},
+		status: { 
+			type: String, 
+			label: "Status", 
+			defaultValue: 'open',
+			values: [
+			{label: 'Open', value: 'open', color: 'olive'},
+			{label: 'In Progress', value: 'in-progress', color: 'teal'},
+			{label: 'Blocked', value: 'blocked', color: 'red'},
+			{label: 'In Test', value: 'in-test', color: 'green'},
+			{label: 'Resolved', value: 'resolved', color: 'blue'},
+			{label: 'Duplicate', value: 'duplicate', color: 'gray'},
+			{label: 'WontFix', value: 'in-test', color: 'gray'},				
+			{label: 'Closed', value: 'closed', color: 'black'},
+			]
+		},
+		milestone: { 
+			type: String, 
+			label: "Milestone", 
+			optional: true,
+			valuesFromCollection: Milestones,
+		}		
 	},
 	rightWidgets: [{name: 'cardLabelsWidget'}],
 	leftWidgets: [{name: 'cardStatusWidget'}]		
@@ -127,7 +172,7 @@ Boom.config.addCardTemplate("StoryCard", {
 			]			
 		}		
 	},
-	rightWidgets: [{name: 'storyTasksWidget'}],
+	rightWidgets: [{name: 'storyTasksWidget'}, {name: 'cardLabelsWidget'}],
 });
 
 Boom.config.addCardTemplate("ArticleCard", {
