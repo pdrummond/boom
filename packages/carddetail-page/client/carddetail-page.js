@@ -2,6 +2,10 @@
 Template.cardDetailPage.helpers({
 	cardMessages: function() {		
 		return Messages.find({channelId: this.channelId});
+	},
+
+	cardIcon: function() {
+		return Boom.CardTemplates[Session.get('currentCard').templateName].icon;
 	}
 });
 
