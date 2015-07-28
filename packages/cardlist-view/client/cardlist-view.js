@@ -332,7 +332,7 @@ CardListHelpers = {
 	},
 
 	getDefaultCardType: function() {
-		return _.keys(Boom.CardTemplates)[0];
+		return Boom.BoardTemplates[Session.get('currentBoardTemplate')].defaultCardType || _.keys(Boom.CardTemplates)[0];
 	},
 
 	cardItemWidgets: function(card, widgetMeta) {

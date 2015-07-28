@@ -5,6 +5,7 @@ Boom.config.labels = {
 
 Boom.config.addBoardTemplate("SoftwareBoard", {	
 	label: "Software Management",
+	defaultCardType: 'TaskCard',
 	fields: {
 		title: { type: String, label: "Title"},
 		description: {type: String, label: "Description", max: 2000, autoform: { rows: 10 }},		
