@@ -29,7 +29,9 @@ Template.cardListView.helpers({
 			cardType = cardTypeFilter.value;
 		}
 		filter.boardId = Session.get('currentBoardId');
-		return Boom.CardCollections[cardType].find(filter, {sort: {updatedAt: -1}});
+		var cards = Boom.CardCollections[cardType].find(filter, {sort: {updatedAt: -1}});		
+		Session.set('filteredCardsCount', cards.fetch().length);
+		return cards;
 	},
 
 	filterTitle: function() {
@@ -62,18 +64,30 @@ Template.cardListView.helpers({
 				values: fieldValues
 			}
 		});
-		console.log("viewFilters", JSON.stringify(result, null, 4));
+		//console.log("viewFilters", JSON.stringify(result, null, 4));		
 		return result;
 	},
 
-	numCards: function() {
-		var selectedCardType = Session.get('cardListView.cardType') || CardListHelpers.getDefaultCardType();
-		return Boom.CardCollections[selectedCardType].find(SearchCriteria.getCriteria()).fetch().length;
+	selectedCardType: function() {		
+		var label = Boom.CardTemplates[CardListHelpers.getDefaultCardType()].labelPlural;
+		var cardTypeFilter = Session.get('cardTypeFilter');
+		if(cardTypeFilter) {
+			label = cardTypeFilter.label;
+		}		
+		return label.toLowerCase();
 	},
 
-	numArchivedCards: function() {
-		var selectedCardType = Session.get('cardListView.cardType') || CardListHelpers.getDefaultCardType();
-		return Boom.CardCollections[selectedCardType].find(SearchCriteria.getArchivedCriteria()).fetch().length;
+	numFilteredCards: function() {
+		return Session.get('filteredCardsCount');
+	},
+
+	numCards: function() {
+		var cardType = CardListHelpers.getDefaultCardType();
+		var cardTypeFilter = Session.get('cardTypeFilter');
+		if(cardTypeFilter) {
+			cardType = cardTypeFilter.value;
+		}
+		return Boom.CardCollections[cardType].find().fetch().length;
 	},
 
 	filters: function() {
@@ -141,17 +155,6 @@ Template.cardListView.events({
 		Session.set('filterCriteria', null);
 	}
 })
-
-
-Template.visibilityDropdown.events({
-	'click #set-active-filter': function() {
-		Session.set('cardListView.archivedFilter', false);
-	},
-
-	'click #set-archived-filter': function() {
-		Session.set('cardListView.archivedFilter', true);
-	},
-});
 
 Template.cardItem.helpers({
 	lastUpdatedMsg: function() {
