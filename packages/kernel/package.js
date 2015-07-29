@@ -8,7 +8,7 @@ Package.onUse(function(api) {
   api.versionsFrom('1.1.0.2');
   api.use(['meteor-platform', 'iron:router', 'momentjs:moment', 'semantic:ui', 
     'fabienb4:autoform-semantic-ui', 'stevezhu:lodash', 'konecty:mongo-counter', 
-    'useraccounts:semantic-ui', 'accounts-google', 'jparker:gravatar']);
+    'useraccounts:semantic-ui', 'accounts-google', 'jparker:gravatar', 'anti:fake']);
 
   api.addFiles([
     'kernel.js',    
@@ -16,7 +16,7 @@ Package.onUse(function(api) {
     'lib/api/api.js',
     'lib/api/boards-api.js',
     'lib/api/config-api.js',
-    'lib/api/router-api.js',
+    'lib/api/router-api.js',    
     'lib/methods/board-methods.js',
     'lib/methods/card-methods.js',
     'lib/helpers/schema-helpers.js',
@@ -41,7 +41,7 @@ Package.onUse(function(api) {
     'client/templates/layout.js'
     ], 'client');
 
-  api.addFiles('server/fixtures.js');
+  api.addFiles('server/fixtures.js', 'server');
 
   api.export(['lodash', 'Boom', 'Boards', 'Cards', 'Channels', 'Messages', 
     'Milestones', 'Filters', 'Counters', 'BoardTemplates', 'formatTime', 

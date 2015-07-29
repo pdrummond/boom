@@ -9,9 +9,32 @@ if(Channels.find().count() == 0) {
 }*/
 
 Meteor.startup(function() {
-	if(Milestones.find().count() == 0) {
-		console.log("Adding milestones");
-		Milestones.insert({_id: 'backlog', title: "Backlog",default: true});
-		Milestones.insert({_id: '1',title: "Sprint 1" });	
-	}
+  /*console.log("BOOM");
+  Boom.CardCollections.TaskCard.remove({});
+
+  var boardId = Boom.BoardCollections.SoftwareBoard.insert({    
+    title: "Board One",
+    description: "Board one desc",
+    templateName: 'SoftwareBoard',
+    cardPrefix: "BD"
+  });
+  console.log('boardId: ' + boardId);
+
+  var user = Fake.user({
+    fields: ['name', 'username', 'emails.address', 'profile.name'],
+  });    
+  for(var i=0; i<1000; i++) {
+    var card = {
+      title: Fake.sentence(10),
+      content: Fake.paragraph(20),
+      createdBy: user.username,
+      createdByEmail: user.emails[0].address,
+      templateName: 'TaskCard',
+      cid: i,
+      boardId: boardId,
+    }
+    var cardId = Boom.CardCollections.TaskCard.insert(card);
+    console.log("card " + cardId + " inserted")
+  }*/
+  
 });
